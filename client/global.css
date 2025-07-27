@@ -186,7 +186,11 @@ html.dark .nav::after {
     font-size: clamp(48px,8vw,64px);
     line-height: 0.9;
     letter-spacing: -0.04em;
+    color: rgba(255, 255, 255, 0.85); /* Blanc doux */
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4); /* Relief subtil */
+    transition: all 0.3s ease-out;
   }
+
 
   .text-subhero {
     @apply font-sans font-normal;
