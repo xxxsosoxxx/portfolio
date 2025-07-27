@@ -1,0 +1,6 @@
+node_modules\
+dist\
+.next\
+.cache\
+package-lock.json
+desktop.ini

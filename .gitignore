@@ -1,0 +1,38 @@
+# ▶️ Dépendances
+node_modules/
+*.tgz
+
+# ⚙️ Build & développement
+dist/
+dist-ssr/
+.vite/
+vite-output/
+
+# 🧪 Logs & debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# 🔐 Fichiers d’environnement
+.env*
+.env.local
+.env.production
+.env.development
+
+# 👩‍💻 IDE & OS
+.vscode/
+.idea/
+*.DS_Store
+*.swp
+*.swo
+*.bak
+*.tmp
+
+# 🚀 Outils Netlify / Stackbit
+netlify/functions/
+stackbit.config.ts
+
+# 📦 Lock files
+package-lock.json
+yarn.lock
+
