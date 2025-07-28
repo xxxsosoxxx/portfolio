@@ -38,6 +38,8 @@
     --input:               0 0% 90%;
     --ring:                0 0% 0%;
 
+    --text-shadow-color: rgba(0, 0, 0, 0.3);
+
     /* Variables dédiées à la nav */
     --nav-bg-unscrolled:   transparent;
     --nav-bg-scrolled:     rgba(255, 255, 255, 0.18);
@@ -64,6 +66,8 @@
     --border:              0 0% 18%;
     --input:               0 0% 14%;
     --ring:                0 0% 65%;
+
+    --text-shadow-color: rgba(255, 255, 255, 0.1);
 
     --nav-bg-unscrolled: rgba(0, 0, 0, 0.08);
     --nav-bg-scrolled: rgba(0, 0, 0, 0.12);
@@ -186,8 +190,8 @@ html.dark .nav::after {
     font-size: clamp(48px,8vw,64px);
     line-height: 0.9;
     letter-spacing: -0.04em;
-    color: rgba(255, 255, 255, 0.85); /* Blanc doux */
-    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4); /* Relief subtil */
+    color: hsl(var(--foreground));
+    text-shadow: 0 1px 3px var(--text-shadow-color);
     transition: all 0.3s ease-out;
   }
 
