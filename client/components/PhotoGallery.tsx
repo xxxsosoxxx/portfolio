@@ -35,10 +35,10 @@ function GalleryItem({
         />
         <div className="absolute inset-0 bg-black/0 group-hover:bg-black/25 transition duration-500 pointer-events-none z-20 rounded-lg" />
         <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/70 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-30 rounded-b-lg">
-          <h3 className="photo-title font-orbitron text-foreground text-sm font-semibold tracking-widest uppercase mb-1 leading-tight">
+          <h3 className="photo-title font-orbitron text-white text-sm font-semibold tracking-widest uppercase mb-1 leading-tight">
             {photo.title}
           </h3>
-          <p className="text-muted-foreground text-xs tracking-wide leading-snug">
+          <p className="font-orbitron text-white text-xs tracking-wide leading-snug">
             {photo.date}
           </p>
         </div>
@@ -54,17 +54,15 @@ export function PhotoGallery() {
   const [direction, setDirection] = useState(0);
 
   useEffect(() => {
-    setPhotos(shuffle(portfolioPhotos)); // affichage aléatoire
+    setPhotos(shuffle(portfolioPhotos));
   }, []);
 
   useEffect(() => {
-  document.body.style.overflow = selectedPhoto ? "hidden" : "auto";
-
-  return () => {
-    document.body.style.overflow = "auto";
-  };
-}, [selectedPhoto]);
-
+    document.body.style.overflow = selectedPhoto ? "hidden" : "auto";
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [selectedPhoto]);
 
   const openLightbox = (photo: Photo) => {
     setCurrentIndex(photos.findIndex((p) => p.id === photo.id));
@@ -95,62 +93,71 @@ export function PhotoGallery() {
         </div>
       </div>
 
-      {/* Lightbox avec swipe natif */}
+      {/* Lightbox avec swipe + fond flouté */}
       <AnimatePresence>
         {selectedPhoto && (
-          <motion.div
-            key={selectedPhoto.id}
-            drag="x"
-            dragConstraints={{ left: 0, right: 0 }}
-            onDragEnd={(event, info) => {
-              if (info.offset.x < -100) navigatePhoto(1);
-              else if (info.offset.x > 100) navigatePhoto(-1);
-            }}
-            initial={{ x: direction > 0 ? 300 : -300, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
-            exit={{ x: direction > 0 ? -300 : 300, opacity: 0 }}
-            transition={{ type: "spring", stiffness: 300, damping: 30 }}
-            className="fixed inset-0 z-50 bg-black/95 flex items-center justify-center p-4"
-            onClick={closeLightbox}
-          >
-            {/* Bouton de fermeture */}
-            <button
+          <div className="fixed inset-0 z-50 flex items-center justify-center">
+            {/* Arrière-plan flouté et adaptatif */}
+            <div className="absolute inset-0 backdrop-blur-sm bg-gray-200/60 dark:bg-black/60 pointer-events-none"></div>
+
+            {/* Lightbox swipe zone */}
+            <motion.div
+              key={selectedPhoto.id}
+              drag="x"
+              dragConstraints={{ left: 0, right: 0 }}
+              onDragEnd={(event, info) => {
+                if (info.offset.x < -100) navigatePhoto(1);
+                else if (info.offset.x > 100) navigatePhoto(-1);
+              }}
+              initial={{ x: direction > 0 ? 300 : -300, opacity: 0, scale: 0.98 }}
+              animate={{ x: 0, opacity: 1, scale: 1 }}
+              exit={{ x: direction > 0 ? -300 : 300, opacity: 0, scale: 0.98 }}
+              transition={{ duration: 0.4, ease: "easeInOut" }}
+              className="relative z-50 flex items-center justify-center p-4"
               onClick={closeLightbox}
-              className="absolute top-6 right-6 z-60 text-muted-foreground hover:text-foreground transition-colors duration-300 p-2 rounded-full hover:bg-white/10"
-              aria-label="Fermer lightbox"
             >
-              <X size={32} />
-            </button>
+              {/* Bouton de fermeture */}
+              <button
+                onClick={closeLightbox}
+                className="absolute top-6 right-6 z-60 text-white transition-colors duration-300 p-2 rounded-full hover:bg-white/10"
+                aria-label="Fermer lightbox"
+              >
+                <X size={32} />
+              </button>
 
-            {/* Image plein écran */}
-            <div
-              className="relative max-w-full max-h-full flex items-center justify-center"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <img
-                src={selectedPhoto.src}
-                alt={selectedPhoto.title}
-                className="max-w-full max-h-[90vh] object-contain rounded-md"
-              />
-              <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/80 to-transparent text-foreground font-orbitron">
-                <h2 className="text-xl font-semibold mb-2 uppercase tracking-wider">{selectedPhoto.title}</h2>
-                <p className="text-muted-foreground text-sm">{selectedPhoto.date}</p>
-                {selectedPhoto.description && (
-                  <p className="text-muted-foreground text-sm mt-2 font-light leading-relaxed">
-                    {selectedPhoto.description}
-                  </p>
-                )}
+              {/* Image */}
+              <div
+                className="relative max-w-full max-h-full flex items-center justify-center"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <img
+                  src={selectedPhoto.src}
+                  alt={selectedPhoto.title}
+                  className="max-w-full max-h-[90vh] object-contain rounded-md"
+                />
+                <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/80 to-transparent text-white font-orbitron">
+                  <h2 className="text-xl font-semibold mb-2 uppercase tracking-wider">
+                    {selectedPhoto.title}
+                  </h2>
+                  <p className="text-white text-xs font-orbitron">{selectedPhoto.date}</p>
+                  {selectedPhoto.description && (
+                    <p className="text-white text-sm mt-2 font-light leading-relaxed">
+                      {selectedPhoto.description}
+                    </p>
+                  )}
+                </div>
               </div>
-            </div>
 
-            {/* Compteur */}
-            <div className="absolute bottom-6 left-1/2 -translate-x-1/2 text-xs px-3 py-1 bg-black/30 text-white rounded-full font-orbitron tracking-widest uppercase">
-              {currentIndex + 1} / {photos.length}
-            </div>
-          </motion.div>
+              {/* Compteur */}
+              <div className="absolute bottom-6 left-1/2 -translate-x-1/2 text-xs px-3 py-1 bg-black/30 text-white rounded-full font-orbitron tracking-widest uppercase">
+                {currentIndex + 1} / {photos.length}
+              </div>
+            </motion.div>
+          </div>
         )}
       </AnimatePresence>
     </>
   );
 }
+
 
