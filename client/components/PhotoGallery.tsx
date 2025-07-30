@@ -160,30 +160,32 @@ export function PhotoGallery() {
             onClick={closeLightbox}
           >
             <div
-              className="relative max-w-full max-h-full flex items-center justify-center pointer-events-auto"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <img
-                src={selectedPhoto.src}
-                alt={selectedPhoto.title}
-                className="max-w-full max-h-[90vh] object-contain rounded-md"
-              />
-              <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/80 to-transparent text-white font-orbitron">
-                <h2 className="text-xl font-semibold mb-2 uppercase tracking-wider">
-                  {selectedPhoto.title}
-                </h2>
-                <p className="text-xs">{selectedPhoto.date}</p>
-                {selectedPhoto.description && (
-                  <p className="text-sm mt-2 font-light leading-relaxed">
-                    {selectedPhoto.description}
-                  </p>
-                )}
-              </div>
+            className="relative max-w-full max-h-full flex flex-col items-center justify-center pointer-events-auto"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <img
+              src={selectedPhoto.src}
+              alt={selectedPhoto.title}
+              className="max-w-full max-h-[90vh] object-contain rounded-md"
+            />
+            <div className="mt-4 text-center">
+              <h3 className="photo-title font-orbitron text-[hsl(var(--foreground))] text-sm font-semibold tracking-widest uppercase leading-tight">
+                {selectedPhoto.title}
+              </h3>
+              <p className="font-orbitron text-[hsl(var(--foreground))] text-xs tracking-wide leading-snug mb-2">
+                {selectedPhoto.date}
+              </p>
+              {selectedPhoto.description && (
+                <p className="text-xs font-orbitron text-[hsl(var(--muted-foreground))] max-w-xl mx-auto leading-snug">
+                  {selectedPhoto.description}
+                </p>
+              )}
+            </div>
             </div>
 
             {/* COMPTEUR */}
-            <div className="absolute bottom-6 left-1/2 -translate-x-1/2 text-xs px-3 py-1 bg-[hsl(var(--muted))]/30 text-[hsl(var(--foreground))] rounded-full font-orbitron tracking-widest uppercase">
-              {currentIndex + 1} / {photos.length}
+            <div className="mt-2 text-xs px-3 py-1 mb-6 bg-[hsl(var(--muted))]/30 text-[hsl(var(--foreground))] rounded-full font-orbitron tracking-widest uppercase">
+            {currentIndex + 1} / {photos.length}
             </div>
           </motion.div>
         </div>
