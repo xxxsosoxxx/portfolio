@@ -94,118 +94,114 @@ export function PhotoGallery() {
 
       <AnimatePresence>
         {selectedPhoto && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center">
-            <div className="absolute inset-0 backdrop-blur-sm bg-gray-200/60 dark:bg-black/60 pointer-events-none z-10" />
+          <div className="fixed inset-0 z-50 flex items-center justify-center min-h-screen p-4">
+            <div className="absolute inset-0 backdrop-blur-sm bg-black/60 pointer-events-none z-10" />
 
-            {/* Lightbox container */}
-            <div className="absolute inset-0 z-50 flex items-center justify-center p-4 min-h-[600px]">
+            <motion.div
+              key={selectedPhoto.id}
+              drag="x"
+              dragConstraints={{ left: 0, right: 0 }}
+              onDragEnd={(event, info) => {
+                if (info.offset.x < -100) navigatePhoto(1);
+                else if (info.offset.x > 100) navigatePhoto(-1);
+              }}
+              initial={{
+                x: direction > 0 ? 300 : -300,
+                opacity: 0,
+                scale: 0.98,
+                filter: "blur(2px)",
+              }}
+              animate={{
+                x: 0,
+                opacity: 1,
+                scale: 1,
+                filter: "blur(0px)",
+              }}
+              exit={{
+                x: direction > 0 ? -300 : 300,
+                opacity: 0,
+                scale: 0.98,
+                filter: "blur(2px)",
+              }}
+              transition={{ duration: 0.5, ease: "easeInOut" }}
+              className="relative z-50 flex items-center justify-center"
+              onClick={closeLightbox}
+            >
+              {/* Bouton Exit */}
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  closeLightbox();
+                }}
+                className="absolute top-6 right-6 z-60 text-white pointer-events-auto p-2 rounded-full hover:bg-white/10"
+                aria-label="Fermer lightbox"
+              >
+                <X size={32} />
+              </button>
 
-              {/* ← Flèche gauche desktop */}
+              {/* Flèche gauche desktop */}
               {currentIndex > 0 && (
                 <button
                   onClick={(e) => {
                     e.stopPropagation();
                     navigatePhoto(-1);
                   }}
-                  className="hidden md:flex absolute inset-y-0 my-auto left-6 z-60 text-white p-2 hover:bg-white/10 rounded-full"
+                  className="hidden md:flex absolute inset-y-0 my-auto left-6 z-60 h-[64px] w-[64px] p-2 rounded-full text-white hover:bg-white/10 transition"
                   aria-label="Photo précédente"
                 >
                   <ChevronLeft size={48} />
                 </button>
               )}
 
-              {/* → Flèche droite desktop */}
+              {/* Flèche droite desktop */}
               {currentIndex < photos.length - 1 && (
                 <button
                   onClick={(e) => {
                     e.stopPropagation();
                     navigatePhoto(1);
                   }}
-                  className="hidden md:flex absolute inset-y-0 my-auto right-6 z-60 text-white p-2 hover:bg-white/10 rounded-full"
+                  className="hidden md:flex absolute inset-y-0 my-auto right-6 z-60 h-[64px] w-[64px] p-2 rounded-full text-white hover:bg-white/10 transition"
                   aria-label="Photo suivante"
                 >
                   <ChevronRight size={48} />
                 </button>
               )}
 
-              {/* Swipe zone & Image */}
-              <motion.div
-                key={selectedPhoto.id}
-                drag="x"
-                dragConstraints={{ left: 0, right: 0 }}
-                onDragEnd={(event, info) => {
-                  if (info.offset.x < -100) navigatePhoto(1);
-                  else if (info.offset.x > 100) navigatePhoto(-1);
-                }}
-                initial={{
-                  x: direction > 0 ? 300 : -300,
-                  opacity: 0,
-                  scale: 0.98,
-                  filter: "blur(2px)",
-                }}
-                animate={{
-                  x: 0,
-                  opacity: 1,
-                  scale: 1,
-                  filter: "blur(0px)",
-                }}
-                exit={{
-                  x: direction > 0 ? -300 : 300,
-                  opacity: 0,
-                  scale: 0.98,
-                  filter: "blur(2px)",
-                }}
-                transition={{ duration: 0.5, ease: "easeInOut" }}
-                className="relative z-50 flex items-center justify-center p-4"
-                onClick={closeLightbox}
+              {/* Image affichée */}
+              <div
+                className="relative max-w-full max-h-full flex items-center justify-center"
+                onClick={(e) => e.stopPropagation()}
               >
-                {/* Bouton Exit */}
-                <button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    closeLightbox();
-                  }}
-                  className="absolute top-6 right-6 z-60 text-white pointer-events-auto transition-colors duration-300 p-2 rounded-full hover:bg-white/10"
-                  aria-label="Fermer lightbox"
-                >
-                  <X size={32} />
-                </button>
-
-                {/* Image affichée */}
-                <div
-                  className="relative max-w-full max-h-full flex items-center justify-center"
-                  onClick={(e) => e.stopPropagation()}
-                >
-                  <img
-                    src={selectedPhoto.src}
-                    alt={selectedPhoto.title}
-                    className="max-w-full max-h-[90vh] object-contain rounded-md"
-                  />
-                  <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/80 to-transparent text-white font-orbitron">
-                    <h2 className="text-xl font-semibold mb-2 uppercase tracking-wider">
-                      {selectedPhoto.title}
-                    </h2>
-                    <p className="text-white text-xs font-orbitron">{selectedPhoto.date}</p>
-                    {selectedPhoto.description && (
-                      <p className="text-white text-sm mt-2 font-light leading-relaxed">
-                        {selectedPhoto.description}
-                      </p>
-                    )}
-                  </div>
+                <img
+                  src={selectedPhoto.src}
+                  alt={selectedPhoto.title}
+                  className="max-w-full max-h-[90vh] object-contain rounded-md"
+                />
+                <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/80 to-transparent text-white font-orbitron">
+                  <h2 className="text-xl font-semibold mb-2 uppercase tracking-wider">
+                    {selectedPhoto.title}
+                  </h2>
+                  <p className="text-xs">{selectedPhoto.date}</p>
+                  {selectedPhoto.description && (
+                    <p className="text-sm mt-2 font-light leading-relaxed">
+                      {selectedPhoto.description}
+                    </p>
+                  )}
                 </div>
+              </div>
 
-                {/* Compteur */}
-                <div className="absolute bottom-6 left-1/2 -translate-x-1/2 text-xs px-3 py-1 bg-black/30 text-white rounded-full font-orbitron tracking-widest uppercase">
-                  {currentIndex + 1} / {photos.length}
-                </div>
-              </motion.div>
-            </div>
+              {/* Compteur */}
+              <div className="absolute bottom-6 left-1/2 -translate-x-1/2 text-xs px-3 py-1 bg-black/30 text-white rounded-full font-orbitron tracking-widest uppercase">
+                {currentIndex + 1} / {photos.length}
+              </div>
+            </motion.div>
           </div>
         )}
       </AnimatePresence>
     </>
   );
 }
+
 
 
 
