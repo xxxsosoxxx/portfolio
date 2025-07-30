@@ -103,7 +103,7 @@ export function PhotoGallery() {
           transition={{ duration: 0.4, ease: 'easeOut' }}
           className="fixed top-6 left-6 text-xs px-3 py-1 rounded-md font-orbitron tracking-widest uppercase shadow-sm z-[60] bg-[hsl(var(--muted))]/30 text-[hsl(var(--foreground))]"
         >
-          ID#{selectedPhoto?.id}
+          #ID{selectedPhoto?.id}
         </motion.div>
 
           {/* BOUTON EXIT sur le backdrop */}
