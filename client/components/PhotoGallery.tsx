@@ -97,34 +97,38 @@ export function PhotoGallery() {
           <div className="fixed inset-0 z-50 flex items-center justify-center">
             <div className="absolute inset-0 backdrop-blur-sm bg-gray-200/60 dark:bg-black/60 pointer-events-none z-10" />
 
-            {/* Navigation & lightbox container */}
-            <div className="absolute inset-0 z-50 flex items-center justify-center p-4">
+            {/* Lightbox container */}
+            <div className="absolute inset-0 z-50 flex items-center justify-center p-4 min-h-[600px]">
 
-              {/* ← Previous */}
-              <button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  navigatePhoto(-1);
-                }}
-                className="absolute left-6 top-1/2 -translate-y-1/2 z-60 text-white p-2 hover:bg-white/10 rounded-full"
-                aria-label="Photo précédente"
-              >
-                <ChevronLeft size={48} />
-              </button>
+              {/* ← Flèche gauche desktop */}
+              {currentIndex > 0 && (
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    navigatePhoto(-1);
+                  }}
+                  className="hidden md:flex absolute inset-y-0 my-auto left-6 z-60 text-white p-2 hover:bg-white/10 rounded-full"
+                  aria-label="Photo précédente"
+                >
+                  <ChevronLeft size={48} />
+                </button>
+              )}
 
-              {/* → Next */}
-              <button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  navigatePhoto(1);
-                }}
-                className="absolute right-6 top-1/2 -translate-y-1/2 z-60 text-white p-2 hover:bg-white/10 rounded-full"
-                aria-label="Photo suivante"
-              >
-                <ChevronRight size={48} />
-              </button>
+              {/* → Flèche droite desktop */}
+              {currentIndex < photos.length - 1 && (
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    navigatePhoto(1);
+                  }}
+                  className="hidden md:flex absolute inset-y-0 my-auto right-6 z-60 text-white p-2 hover:bg-white/10 rounded-full"
+                  aria-label="Photo suivante"
+                >
+                  <ChevronRight size={48} />
+                </button>
+              )}
 
-              {/* Lightbox swipe zone */}
+              {/* Swipe zone & Image */}
               <motion.div
                 key={selectedPhoto.id}
                 drag="x"
@@ -133,26 +137,41 @@ export function PhotoGallery() {
                   if (info.offset.x < -100) navigatePhoto(1);
                   else if (info.offset.x > 100) navigatePhoto(-1);
                 }}
-                initial={{ x: direction > 0 ? 300 : -300, opacity: 0, scale: 0.98 }}
-                animate={{ x: 0, opacity: 1, scale: 1 }}
-                exit={{ x: direction > 0 ? -300 : 300, opacity: 0, scale: 0.98 }}
-                transition={{ duration: 0.4, ease: "easeInOut" }}
+                initial={{
+                  x: direction > 0 ? 300 : -300,
+                  opacity: 0,
+                  scale: 0.98,
+                  filter: "blur(2px)",
+                }}
+                animate={{
+                  x: 0,
+                  opacity: 1,
+                  scale: 1,
+                  filter: "blur(0px)",
+                }}
+                exit={{
+                  x: direction > 0 ? -300 : 300,
+                  opacity: 0,
+                  scale: 0.98,
+                  filter: "blur(2px)",
+                }}
+                transition={{ duration: 0.5, ease: "easeInOut" }}
                 className="relative z-50 flex items-center justify-center p-4"
                 onClick={closeLightbox}
               >
-                {/* Bouton de fermeture */}
+                {/* Bouton Exit */}
                 <button
                   onClick={(e) => {
                     e.stopPropagation();
                     closeLightbox();
                   }}
-                  className="absolute top-6 right-6 z-60 text-white transition-colors duration-300 p-2 rounded-full hover:bg-white/10"
+                  className="absolute top-6 right-6 z-60 text-white pointer-events-auto transition-colors duration-300 p-2 rounded-full hover:bg-white/10"
                   aria-label="Fermer lightbox"
                 >
                   <X size={32} />
                 </button>
 
-                {/* Image */}
+                {/* Image affichée */}
                 <div
                   className="relative max-w-full max-h-full flex items-center justify-center"
                   onClick={(e) => e.stopPropagation()}
