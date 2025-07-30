@@ -36,6 +36,14 @@ export default {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
+        colors: {
+        
+        neon: {
+        DEFAULT: "#ff69b4",
+        soft: "#ff98c9",
+        pale: "#ffc7de",
+        },
+      },
       },
       fontFamily: {
         sans: ["Inter", "system-ui", "sans-serif"],
