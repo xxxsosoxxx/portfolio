@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { X } from "lucide-react";
+import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import { portfolioPhotos } from "./portfolioPhotos";
 import { motion, AnimatePresence } from "framer-motion";
 import { shuffle } from "lodash";
@@ -82,7 +82,6 @@ export function PhotoGallery() {
 
   return (
     <>
-      {/* Galerie en colonnes responsive */}
       <div className="w-full bg-background text-foreground">
         <div className="mx-auto max-w-none px-0">
           <div className="columns-1 md:columns-2 lg:columns-3 xl:columns-4 gap-4 p-4">
@@ -93,71 +92,101 @@ export function PhotoGallery() {
         </div>
       </div>
 
-      {/* Lightbox avec swipe + fond flouté */}
       <AnimatePresence>
         {selectedPhoto && (
           <div className="fixed inset-0 z-50 flex items-center justify-center">
-            {/* Arrière-plan flouté et adaptatif */}
-            <div className="absolute inset-0 backdrop-blur-sm bg-gray-200/60 dark:bg-black/60 pointer-events-none"></div>
+            <div className="absolute inset-0 backdrop-blur-sm bg-gray-200/60 dark:bg-black/60 pointer-events-none z-10" />
 
-            {/* Lightbox swipe zone */}
-            <motion.div
-              key={selectedPhoto.id}
-              drag="x"
-              dragConstraints={{ left: 0, right: 0 }}
-              onDragEnd={(event, info) => {
-                if (info.offset.x < -100) navigatePhoto(1);
-                else if (info.offset.x > 100) navigatePhoto(-1);
-              }}
-              initial={{ x: direction > 0 ? 300 : -300, opacity: 0, scale: 0.98 }}
-              animate={{ x: 0, opacity: 1, scale: 1 }}
-              exit={{ x: direction > 0 ? -300 : 300, opacity: 0, scale: 0.98 }}
-              transition={{ duration: 0.4, ease: "easeInOut" }}
-              className="relative z-50 flex items-center justify-center p-4"
-              onClick={closeLightbox}
-            >
-              {/* Bouton de fermeture */}
+            {/* Navigation & lightbox container */}
+            <div className="absolute inset-0 z-50 flex items-center justify-center p-4">
+
+              {/* ← Previous */}
               <button
-                onClick={closeLightbox}
-                className="absolute top-6 right-6 z-60 text-white transition-colors duration-300 p-2 rounded-full hover:bg-white/10"
-                aria-label="Fermer lightbox"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  navigatePhoto(-1);
+                }}
+                className="absolute left-6 top-1/2 -translate-y-1/2 z-60 text-white p-2 hover:bg-white/10 rounded-full"
+                aria-label="Photo précédente"
               >
-                <X size={32} />
+                <ChevronLeft size={48} />
               </button>
 
-              {/* Image */}
-              <div
-                className="relative max-w-full max-h-full flex items-center justify-center"
-                onClick={(e) => e.stopPropagation()}
+              {/* → Next */}
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  navigatePhoto(1);
+                }}
+                className="absolute right-6 top-1/2 -translate-y-1/2 z-60 text-white p-2 hover:bg-white/10 rounded-full"
+                aria-label="Photo suivante"
               >
-                <img
-                  src={selectedPhoto.src}
-                  alt={selectedPhoto.title}
-                  className="max-w-full max-h-[90vh] object-contain rounded-md"
-                />
-                <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/80 to-transparent text-white font-orbitron">
-                  <h2 className="text-xl font-semibold mb-2 uppercase tracking-wider">
-                    {selectedPhoto.title}
-                  </h2>
-                  <p className="text-white text-xs font-orbitron">{selectedPhoto.date}</p>
-                  {selectedPhoto.description && (
-                    <p className="text-white text-sm mt-2 font-light leading-relaxed">
-                      {selectedPhoto.description}
-                    </p>
-                  )}
-                </div>
-              </div>
+                <ChevronRight size={48} />
+              </button>
 
-              {/* Compteur */}
-              <div className="absolute bottom-6 left-1/2 -translate-x-1/2 text-xs px-3 py-1 bg-black/30 text-white rounded-full font-orbitron tracking-widest uppercase">
-                {currentIndex + 1} / {photos.length}
-              </div>
-            </motion.div>
+              {/* Lightbox swipe zone */}
+              <motion.div
+                key={selectedPhoto.id}
+                drag="x"
+                dragConstraints={{ left: 0, right: 0 }}
+                onDragEnd={(event, info) => {
+                  if (info.offset.x < -100) navigatePhoto(1);
+                  else if (info.offset.x > 100) navigatePhoto(-1);
+                }}
+                initial={{ x: direction > 0 ? 300 : -300, opacity: 0, scale: 0.98 }}
+                animate={{ x: 0, opacity: 1, scale: 1 }}
+                exit={{ x: direction > 0 ? -300 : 300, opacity: 0, scale: 0.98 }}
+                transition={{ duration: 0.4, ease: "easeInOut" }}
+                className="relative z-50 flex items-center justify-center p-4"
+                onClick={closeLightbox}
+              >
+                {/* Bouton de fermeture */}
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    closeLightbox();
+                  }}
+                  className="absolute top-6 right-6 z-60 text-white transition-colors duration-300 p-2 rounded-full hover:bg-white/10"
+                  aria-label="Fermer lightbox"
+                >
+                  <X size={32} />
+                </button>
+
+                {/* Image */}
+                <div
+                  className="relative max-w-full max-h-full flex items-center justify-center"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  <img
+                    src={selectedPhoto.src}
+                    alt={selectedPhoto.title}
+                    className="max-w-full max-h-[90vh] object-contain rounded-md"
+                  />
+                  <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/80 to-transparent text-white font-orbitron">
+                    <h2 className="text-xl font-semibold mb-2 uppercase tracking-wider">
+                      {selectedPhoto.title}
+                    </h2>
+                    <p className="text-white text-xs font-orbitron">{selectedPhoto.date}</p>
+                    {selectedPhoto.description && (
+                      <p className="text-white text-sm mt-2 font-light leading-relaxed">
+                        {selectedPhoto.description}
+                      </p>
+                    )}
+                  </div>
+                </div>
+
+                {/* Compteur */}
+                <div className="absolute bottom-6 left-1/2 -translate-x-1/2 text-xs px-3 py-1 bg-black/30 text-white rounded-full font-orbitron tracking-widest uppercase">
+                  {currentIndex + 1} / {photos.length}
+                </div>
+              </motion.div>
+            </div>
           </div>
         )}
       </AnimatePresence>
     </>
   );
 }
+
 
 
