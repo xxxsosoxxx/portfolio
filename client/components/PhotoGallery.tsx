@@ -97,6 +97,14 @@ export function PhotoGallery() {
           <div className="fixed inset-0 z-50 flex items-center justify-center min-h-screen p-4">
           {/* BACKDROP adaptatif dark/light */}
           <div className="absolute inset-0 backdrop-blur-sm bg-[hsl(var(--background))]/80 pointer-events-none z-10" />
+          <motion.div
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.4, ease: 'easeOut' }}
+          className="fixed top-6 left-6 text-xs px-3 py-1 rounded-md font-orbitron tracking-widest uppercase shadow-sm z-[60] bg-[hsl(var(--muted))]/30 text-[hsl(var(--foreground))]"
+        >
+          ID#{selectedPhoto?.id}
+        </motion.div>
 
           {/* BOUTON EXIT sur le backdrop */}
           <button
@@ -183,10 +191,6 @@ export function PhotoGallery() {
             </div>
             </div>
 
-            {/* COMPTEUR */}
-            <div className="mt-2 text-xs px-3 py-1 mb-6 bg-[hsl(var(--muted))]/30 text-[hsl(var(--foreground))] rounded-full font-orbitron tracking-widest uppercase">
-            {currentIndex + 1} / {photos.length}
-            </div>
           </motion.div>
         </div>
         )}
