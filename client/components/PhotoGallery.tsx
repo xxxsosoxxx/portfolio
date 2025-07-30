@@ -99,7 +99,7 @@ export function PhotoGallery() {
 
             <motion.div
               key={selectedPhoto.id}
-              style={{ pointerEvents: "auto", touchAction: "pan-y" }}
+              className="relative z-50 flex items-center justify-center"
               drag="x"
               dragConstraints={{ left: 0, right: 0 }}
               onDragEnd={(event, info) => {
@@ -125,7 +125,6 @@ export function PhotoGallery() {
                 filter: "blur(2px)",
               }}
               transition={{ duration: 0.5, ease: "easeInOut" }}
-              className="relative z-50 flex items-center justify-center"
               onClick={closeLightbox}
             >
               {/* Bouton Exit */}
@@ -134,7 +133,7 @@ export function PhotoGallery() {
                   e.stopPropagation();
                   closeLightbox();
                 }}
-                className="pointer-events-auto absolute top-6 right-6 z-60 p-2 rounded-full text-[hsl(var(--foreground))] hover:bg-[hsl(var(--muted-foreground))]/10 transition"
+                className="absolute top-6 right-6 z-[999] p-2 rounded-full text-[hsl(var(--foreground))] hover:bg-[hsl(var(--muted-foreground))]/10 transition pointer-events-auto"
                 aria-label="Fermer lightbox"
               >
                 <X size={32} />
@@ -147,7 +146,7 @@ export function PhotoGallery() {
                     e.stopPropagation();
                     navigatePhoto(-1);
                   }}
-                  className="pointer-events-auto hidden md:flex absolute inset-y-0 my-auto left-6 z-60 h-[64px] w-[64px] p-2 rounded-full text-[hsl(var(--foreground))] hover:bg-[hsl(var(--muted-foreground))]/10 transition"
+                  className="absolute inset-y-0 left-6 z-[999] h-[64px] w-[64px] p-2 rounded-full text-[hsl(var(--foreground))] hover:bg-[hsl(var(--muted-foreground))]/10 transition pointer-events-auto hidden md:flex"
                   aria-label="Photo précédente"
                 >
                   <ChevronLeft size={48} />
@@ -161,7 +160,7 @@ export function PhotoGallery() {
                     e.stopPropagation();
                     navigatePhoto(1);
                   }}
-                  className="pointer-events-auto hidden md:flex absolute inset-y-0 my-auto right-6 z-60 h-[64px] w-[64px] p-2 rounded-full text-[hsl(var(--foreground))] hover:bg-[hsl(var(--muted-foreground))]/10 transition"
+                  className="absolute inset-y-0 right-6 z-[999] h-[64px] w-[64px] p-2 rounded-full text-[hsl(var(--foreground))] hover:bg-[hsl(var(--muted-foreground))]/10 transition pointer-events-auto hidden md:flex"
                   aria-label="Photo suivante"
                 >
                   <ChevronRight size={48} />
@@ -170,7 +169,7 @@ export function PhotoGallery() {
 
               {/* Image affichée */}
               <div
-                className="relative max-w-full max-h-full flex items-center justify-center"
+                className="relative max-w-full max-h-full flex items-center justify-center pointer-events-auto"
                 onClick={(e) => e.stopPropagation()}
               >
                 <img
@@ -202,6 +201,7 @@ export function PhotoGallery() {
     </>
   );
 }
+
 
 
 
