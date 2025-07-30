@@ -141,13 +141,13 @@ export function PhotoGallery() {
               </button>
 
               {/* Flèche gauche desktop */}
-              {currentIndex > 0 && (
+              {photos.length > 1 && (
                 <button
                   onClick={(e) => {
                     e.stopPropagation();
                     navigatePhoto(-1);
                   }}
-                  className="pointer-events-auto hidden sm:flex absolute inset-y-0 my-auto left-6 z-60 h-[64px] w-[64px] p-2 rounded-full text-[hsl(var(--foreground))] hover:bg-[hsl(var(--muted-foreground))]/10 transition"
+                  className="pointer-events-auto hidden md:flex absolute inset-y-0 my-auto left-6 z-60 h-[64px] w-[64px] p-2 rounded-full text-[hsl(var(--foreground))] hover:bg-[hsl(var(--muted-foreground))]/10 transition"
                   aria-label="Photo précédente"
                 >
                   <ChevronLeft size={48} />
@@ -155,13 +155,13 @@ export function PhotoGallery() {
               )}
 
               {/* Flèche droite desktop */}
-              {currentIndex < photos.length - 1 && (
+              {photos.length > 1 && (
                 <button
                   onClick={(e) => {
                     e.stopPropagation();
                     navigatePhoto(1);
                   }}
-                  className="pointer-events-auto hidden sd:flex absolute inset-y-0 my-auto right-6 z-60 h-[64px] w-[64px] p-2 rounded-full text-[hsl(var(--foreground))] hover:bg-[hsl(var(--muted-foreground))]/10 transition"
+                  className="pointer-events-auto hidden md:flex absolute inset-y-0 my-auto right-6 z-60 h-[64px] w-[64px] p-2 rounded-full text-[hsl(var(--foreground))] hover:bg-[hsl(var(--muted-foreground))]/10 transition"
                   aria-label="Photo suivante"
                 >
                   <ChevronRight size={48} />
@@ -202,6 +202,7 @@ export function PhotoGallery() {
     </>
   );
 }
+
 
 
 
