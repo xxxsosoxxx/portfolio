@@ -13,11 +13,11 @@ export const HeroBlock = ({ children, className }: HeroBlockProps) => {
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 1, ease: "easeOut" }}
       className={cn(
-        "h-screen flex items-center justify-center text-center px-6 orbitron-title hover-glow text-foreground",
+        "h-screen flex items-center justify-center text-center px-6 text-foreground",
         className
       )}
     >
-      <h1 className="text-[6vw] md:text-[5vw] lg:text-[4vw] leading-tight tracking-wide uppercase">
+      <h1 className="text-[10vw] sm:text-[8vw] md:text-[6vw] lg:text-[120px] font-orbitron font-semibold uppercase tracking-wide leading-tight hover:text-neon transition-colors duration-300">
         {children}
       </h1>
     </motion.section>
