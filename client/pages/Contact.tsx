@@ -3,6 +3,8 @@ import emailjs from "@emailjs/browser";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 import { Helmet } from "react-helmet";
+import { HeroBlock } from "@/components/ui/HeroBlock";
+
 
 <Helmet>
   <title>Contact – Souheila Said</title>
@@ -66,7 +68,9 @@ export default function Contact() {
       <section className="pt-32 pb-16 bg-background">
         <div className="section-padding">
           <div className="container-narrow text-center">
-            <h1 className="text-hero mb-8 animate-fade-in-up">Contact</h1>
+            <HeroBlock className="mb-8">
+            CONTACT
+            </HeroBlock>
             <p className="text-subhero text-muted-foreground max-w-2xl mx-auto animate-fade-in-up">
               Ready to collaborate? Let's create something beautiful together.
             </p>
