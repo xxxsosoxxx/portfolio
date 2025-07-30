@@ -95,115 +95,100 @@ export function PhotoGallery() {
       <AnimatePresence>
         {selectedPhoto && (
           <div className="fixed inset-0 z-50 flex items-center justify-center min-h-screen p-4">
-            <div className="absolute inset-0 backdrop-blur-sm bg-black/60 pointer-events-none z-10" />
+          {/* BACKDROP adaptatif dark/light */}
+          <div className="absolute inset-0 backdrop-blur-sm bg-[hsl(var(--background))]/80 pointer-events-none z-10" />
 
-            <motion.div
-              key={selectedPhoto.id}
-              className="relative z-50 flex items-center justify-center"
-              drag="x"
-              dragConstraints={{ left: 0, right: 0 }}
-              onDragEnd={(event, info) => {
-                if (info.offset.x < -100) navigatePhoto(1);
-                else if (info.offset.x > 100) navigatePhoto(-1);
-              }}
-              initial={{
-                x: direction > 0 ? 300 : -300,
-                opacity: 0,
-                scale: 0.98,
-                filter: "blur(2px)",
-              }}
-              animate={{
-                x: 0,
-                opacity: 1,
-                scale: 1,
-                filter: "blur(0px)",
-              }}
-              exit={{
-                x: direction > 0 ? -300 : 300,
-                opacity: 0,
-                scale: 0.98,
-                filter: "blur(2px)",
-              }}
-              transition={{ duration: 0.5, ease: "easeInOut" }}
-              onClick={closeLightbox}
-            >
-              {/* Bouton Exit */}
+          {/* BOUTON EXIT sur le backdrop */}
+          <button
+            onClick={closeLightbox}
+            className="absolute top-6 right-6 z-[999] p-2 rounded-full text-[hsl(var(--foreground))] hover:bg-[hsl(var(--muted-foreground))]/10 transition pointer-events-auto"
+            aria-label="Fermer lightbox"
+          >
+            <X size={32} />
+          </button>
+
+          {/* FLÈCHES uniquement sur laptop */}
+          {photos.length > 1 && (
+            <>
               <button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  closeLightbox();
-                }}
-                className="absolute top-6 right-6 z-[999] p-2 rounded-full text-[hsl(var(--foreground))] hover:bg-[hsl(var(--muted-foreground))]/10 transition pointer-events-auto"
-                aria-label="Fermer lightbox"
+                onClick={() => navigatePhoto(-1)}
+                className="absolute top-1/2 left-6 -translate-y-1/2 z-[999] hidden md:flex h-[64px] w-[64px] p-2 rounded-full text-[hsl(var(--foreground))] hover:bg-[hsl(var(--muted-foreground))]/10 transition pointer-events-auto"
+                aria-label="Photo précédente"
               >
-                <X size={32} />
+                <ChevronLeft size={48} />
               </button>
 
-              {/* Flèche gauche desktop */}
-              {photos.length > 1 && (
-                <button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    navigatePhoto(-1);
-                  }}
-                  className="absolute inset-y-0 left-6 z-[999] h-[64px] w-[64px] p-2 rounded-full text-[hsl(var(--foreground))] hover:bg-[hsl(var(--muted-foreground))]/10 transition pointer-events-auto hidden md:flex"
-                  aria-label="Photo précédente"
-                >
-                  <ChevronLeft size={48} />
-                </button>
-              )}
-
-              {/* Flèche droite desktop */}
-              {photos.length > 1 && (
-                <button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    navigatePhoto(1);
-                  }}
-                  className="absolute inset-y-0 right-6 z-[999] h-[64px] w-[64px] p-2 rounded-full text-[hsl(var(--foreground))] hover:bg-[hsl(var(--muted-foreground))]/10 transition pointer-events-auto hidden md:flex"
-                  aria-label="Photo suivante"
-                >
-                  <ChevronRight size={48} />
-                </button>
-              )}
-
-              {/* Image affichée */}
-              <div
-                className="relative max-w-full max-h-full flex items-center justify-center pointer-events-auto"
-                onClick={(e) => e.stopPropagation()}
+              <button
+                onClick={() => navigatePhoto(1)}
+                className="absolute top-1/2 right-6 -translate-y-1/2 z-[999] hidden md:flex h-[64px] w-[64px] p-2 rounded-full text-[hsl(var(--foreground))] hover:bg-[hsl(var(--muted-foreground))]/10 transition pointer-events-auto"
+                aria-label="Photo suivante"
               >
-                <img
-                  src={selectedPhoto.src}
-                  alt={selectedPhoto.title}
-                  className="max-w-full max-h-[90vh] object-contain rounded-md"
-                />
-                <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/80 to-transparent text-white font-orbitron">
-                  <h2 className="text-xl font-semibold mb-2 uppercase tracking-wider">
-                    {selectedPhoto.title}
-                  </h2>
-                  <p className="text-xs">{selectedPhoto.date}</p>
-                  {selectedPhoto.description && (
-                    <p className="text-sm mt-2 font-light leading-relaxed">
-                      {selectedPhoto.description}
-                    </p>
-                  )}
-                </div>
-              </div>
+                <ChevronRight size={48} />
+              </button>
+            </>
+          )}
 
-              {/* Compteur */}
-              <div className="absolute bottom-6 left-1/2 -translate-x-1/2 text-xs px-3 py-1 bg-black/30 text-white rounded-full font-orbitron tracking-widest uppercase">
-                {currentIndex + 1} / {photos.length}
+          {/* SWIPE IMAGE + INFOS */}
+          <motion.div
+            key={selectedPhoto.id}
+            className="relative z-50 flex items-center justify-center"
+            drag="x"
+            dragConstraints={{ left: 0, right: 0 }}
+            onDragEnd={(event, info) => {
+              if (info.offset.x < -100) navigatePhoto(1);
+              else if (info.offset.x > 100) navigatePhoto(-1);
+            }}
+            initial={{
+              x: direction > 0 ? 300 : -300,
+              opacity: 0,
+              scale: 0.98,
+              filter: "blur(2px)",
+            }}
+            animate={{
+              x: 0,
+              opacity: 1,
+              scale: 1,
+              filter: "blur(0px)",
+            }}
+            exit={{
+              x: direction > 0 ? -300 : 300,
+              opacity: 0,
+              scale: 0.98,
+              filter: "blur(2px)",
+            }}
+            transition={{ duration: 0.5, ease: "easeInOut" }}
+            onClick={closeLightbox}
+          >
+            <div
+              className="relative max-w-full max-h-full flex items-center justify-center pointer-events-auto"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <img
+                src={selectedPhoto.src}
+                alt={selectedPhoto.title}
+                className="max-w-full max-h-[90vh] object-contain rounded-md"
+              />
+              <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/80 to-transparent text-white font-orbitron">
+                <h2 className="text-xl font-semibold mb-2 uppercase tracking-wider">
+                  {selectedPhoto.title}
+                </h2>
+                <p className="text-xs">{selectedPhoto.date}</p>
+                {selectedPhoto.description && (
+                  <p className="text-sm mt-2 font-light leading-relaxed">
+                    {selectedPhoto.description}
+                  </p>
+                )}
               </div>
-            </motion.div>
-          </div>
+            </div>
+
+            {/* COMPTEUR */}
+            <div className="absolute bottom-6 left-1/2 -translate-x-1/2 text-xs px-3 py-1 bg-[hsl(var(--muted))]/30 text-[hsl(var(--foreground))] rounded-full font-orbitron tracking-widest uppercase">
+              {currentIndex + 1} / {photos.length}
+            </div>
+          </motion.div>
+        </div>
         )}
       </AnimatePresence>
     </>
   );
 }
-
-
-
-
-
-
