@@ -12,7 +12,6 @@ export default function Portfolio() {
   const direction = useNavigationDirection();
 
   return (
-    <PageTransition>
       <div className="min-h-screen bg-background text-foreground">
         <Helmet>
           <title>Portfolio – Souheila Said</title>
@@ -22,6 +21,7 @@ export default function Portfolio() {
         </Helmet>
 
         <Navigation />
+        <PageTransition>
         <HeroBlock />
 
         {/* Photo Gallery */}
@@ -40,10 +40,11 @@ export default function Portfolio() {
             </div>
           </div>
         </section>
+        </PageTransition>
 
+        {/* Footer */}
         <Footer />
       </div>
-    </PageTransition>
   );
 }
 
