@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
@@ -7,14 +6,9 @@ import { AnimatedCTA } from "@/components/ui/animatedCTA";
 
 export default function Index() {
   const direction = useNavigationDirection();
-  const [isLoaded, setIsLoaded] = useState(false);
-
-  useEffect(() => {
-    setIsLoaded(true);
-  }, []);
 
   return (
-      <div className="min-h-screen relative overflow-hidden">
+      <div className="min-h-screen relative overflow-hidden animate-fade-in-up">
         <Helmet>
           <title>Souheila Said – Model & Creative</title>
           <meta
@@ -34,9 +28,8 @@ export default function Index() {
 
           {/* Hero Section */}
           <section
-            className={`relative h-screen flex items-center justify-center transition-opacity duration-700 ${
-              isLoaded ? "opacity-100" : "opacity-0"
-            }`}
+            className="opacity-0 transition-opacity duration-700"
+            style={{ opacity: isLoaded ? 1 : 0 }}
           >
             <div className="absolute inset-0 z-0">
               <img
