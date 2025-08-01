@@ -42,7 +42,7 @@
 
     /* Variables dédiées à la nav */
     --nav-bg-unscrolled:   transparent;
-    --nav-bg-scrolled:     rgba(255, 255, 255, 0.18);
+    --nav-bg-scrolled:     (0 0 10px rgba(0, 0, 0, 0.1));
     --nav-text:            rgba(0, 0, 0, 0.90);
     --nav-text-scrolled:   rgba(0, 0, 0, 0.95);
   }
@@ -69,7 +69,7 @@
 
     --text-shadow-color: rgba(255, 255, 255, 0.1);
 
-    --nav-bg-unscrolled: rgba(0, 0, 0, 0.08);
+    --nav-bg-unscrolled: rgba(0, 0, 0, 0.051);
     --nav-bg-scrolled: rgba(0, 0, 0, 0.12);
     --nav-border-color:    rgba(255,255,255,0.10);
     --nav-shadow-color:    rgba(255,255,255,0.08);
@@ -117,7 +117,6 @@
   .nav {
     @apply fixed top-0 left-0 right-0 z-50 backdrop-blur-lg transition-colors duration-500 ease-in-out;
     background-color: var(--nav-bg-unscrolled);
-    box-shadow: none
     position: relative;
     border: none;
   }
@@ -128,7 +127,7 @@
   }
 
   .nav.scrolled {
-    @apply backdrop-blur-xl transition-colors duration-300 ease-in-out shadow-md;
+    @apply transition-colors duration-300 ease-in-out;
     background-color: var(--nav-bg-scrolled);
     color: var(--nav-text-scrolled);
   }

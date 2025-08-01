@@ -51,7 +51,7 @@ export function Navigation() {
             {/* Logo */}
             <Link
               to="/"
-              className="text-2xl font-light text-foreground hover:text-muted-foreground transition-colors duration-300"
+              className="text-2xl font-light text-foreground transition-colors duration-300"
               style={{ font: "25px/28px Orbitron, sans-serif" }}
             >
               SOUHEILA SAID
