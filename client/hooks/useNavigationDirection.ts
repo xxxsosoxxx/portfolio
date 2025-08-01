@@ -1,21 +1,18 @@
-"use client";
-
-import { useEffect, useState } from "react";
-import { useRouter } from "next/router";
+import { useLocation } from "react-router-dom";
+import { useEffect, useRef, useState } from "react";
 
 export function useNavigationDirection() {
-  const router = useRouter();
-  const pathname = router.pathname;
-  const [previousPath, setPreviousPath] = useState<string>("");
+  const location = useLocation();
+  const prevPath = useRef(location.pathname);
   const [direction, setDirection] = useState<"forward" | "backward">("forward");
 
   useEffect(() => {
-    const order = ["/", "/portfolio", "/about", "/contact"];
-    const prevIndex = order.indexOf(previousPath);
-    const nextIndex = order.indexOf(pathname);
-    setDirection(nextIndex > prevIndex ? "forward" : "backward");
-    setPreviousPath(pathname);
-  }, [pathname]);
+    const currentPath = location.pathname;
+    if (currentPath !== prevPath.current) {
+      setDirection("forward");
+      prevPath.current = currentPath;
+    }
+  }, [location]);
 
   return direction;
 }
