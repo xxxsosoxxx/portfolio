@@ -28,9 +28,7 @@ export default function Index() {
           <Navigation />
 
           {/* Hero Section */}
-          <section
-            className="transition-opacity duration-700"
-          >
+          <section className="relative h-screen flex items-center justify-center text-white transition-opacity duration-700">
             <div className="absolute inset-0 z-0">
               <img
                 src="https://cdn.builder.io/api/v1/image/assets%2F32dbebdc41de4f02a397c4bcb49e3699%2F7f99b673551e42f7a1aa9f5d299383b4"
@@ -40,7 +38,8 @@ export default function Index() {
               />
               <div className="absolute inset-0 bg-black/10" />
             </div>
-            <div className="relative z-10 text-center text-white px-6 transition-transform duration-700">
+
+            <div className="relative z-10 text-center px-6">
               <h1
                 className="text-6xl md:text-7xl mb-4 leading-tight"
                 style={{ fontFamily: "Orbitron, sans-serif" }}
@@ -54,6 +53,7 @@ export default function Index() {
               </p>
             </div>
           </section>
+
 
           {/* Brief Introduction Section */}
           <section className="py-24 bg-background">
