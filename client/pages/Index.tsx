@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
-import { PageTransition } from "@/components/ui/PageTransition";
 import { useNavigationDirection } from "@/hooks/useNavigationDirection";
 import { AnimatedCTA } from "@/components/ui/animatedCTA";
 
@@ -15,7 +14,6 @@ export default function Index() {
   }, []);
 
   return (
-    <PageTransition>
       <div className="min-h-screen relative overflow-hidden">
         <Helmet>
           <title>Souheila Said – Model & Creative</title>
@@ -149,7 +147,6 @@ export default function Index() {
           <Footer />
         </main>
       </div>
-    </PageTransition>
   );
 }
 

@@ -1,14 +1,14 @@
 import { motion } from "framer-motion";
 import { useNavigationDirection } from "@/hooks/useNavigationDirection";
 import { easeOut, easeIn } from "framer-motion";
-import { useRef, useEffect } from "react";
+import { useState, useEffect } from "react";
 
 export function PageTransition({ children }: { children: React.ReactNode }) {
   const direction = useNavigationDirection();
-  const isFirstRender = useRef(true);
+  const [shouldAnimate, setShouldAnimate] = useState(false);
 
   useEffect(() => {
-    isFirstRender.current = false;
+    setShouldAnimate(true);
   }, []);
 
   const variants = {
@@ -30,7 +30,7 @@ export function PageTransition({ children }: { children: React.ReactNode }) {
 
   return (
     <motion.div
-      initial={isFirstRender.current ? false : "initial"}
+      initial={shouldAnimate ? "initial" : false}
       animate="animate"
       exit="exit"
       variants={variants}
