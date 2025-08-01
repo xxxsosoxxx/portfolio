@@ -29,7 +29,7 @@ export default function Index() {
 
           {/* Hero Section */}
           <section
-            className="opacity-0 transition-opacity duration-700"
+            className="transition-opacity duration-700"
           >
             <div className="absolute inset-0 z-0">
               <img
