@@ -1,4 +1,4 @@
-import { useRouter } from "next/router";
+import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
@@ -10,13 +10,13 @@ interface AnimatedCTAProps {
 }
 
 export const AnimatedCTA = ({ href, label, direction = "right" }: AnimatedCTAProps) => {
-  const router = useRouter();
+  const navigate = useNavigate();
   const [isClicked, setIsClicked] = useState(false);
 
   const handleClick = () => {
     setIsClicked(true);
     setTimeout(() => {
-      router.push(href);
+      navigate(href);
     }, 400);
   };
 
