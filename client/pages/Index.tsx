@@ -3,21 +3,15 @@ import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 import { useNavigationDirection } from "@/hooks/useNavigationDirection";
 import { AnimatedCTA } from "@/components/ui/animatedCTA";
-import { useEffect, useState } from "react";
 
 export default function Index() {
   const direction = useNavigationDirection();
-  const [isLoaded, setIsLoaded] = useState(false);
-
-useEffect(() => {
-  setIsLoaded(true);
-}, []);
 
 
   return (
       <div className="min-h-screen relative overflow-hidden animate-fade-in-up">
         <Helmet>
-          <title>Souheila Said – Model & Creative</title>
+          <title>Souheila Said</title>
           <meta
             name="description"
             content="Discover the editorial and visual universe of Souheila Said — a model and creative voice based in Brussels."
@@ -36,7 +30,6 @@ useEffect(() => {
           {/* Hero Section */}
           <section
             className="opacity-0 transition-opacity duration-700"
-            style={{ opacity: isLoaded ? 1 : 0 }}
           >
             <div className="absolute inset-0 z-0">
               <img
@@ -47,11 +40,7 @@ useEffect(() => {
               />
               <div className="absolute inset-0 bg-black/10" />
             </div>
-            <div
-              className={`relative z-10 text-center text-white px-6 transition-transform duration-700 ${
-                isLoaded ? "translate-y-0" : "translate-y-8"
-              }`}
-            >
+            <div className="relative z-10 text-center text-white px-6 transition-transform duration-700">
               <h1
                 className="text-6xl md:text-7xl mb-4 leading-tight"
                 style={{ fontFamily: "Orbitron, sans-serif" }}
@@ -70,11 +59,7 @@ useEffect(() => {
           <section className="py-24 bg-background">
             <div className="section-padding">
               <div className="container-narrow">
-                <div
-                  className={`grid md:grid-cols-2 gap-16 items-center transition-all duration-1000 delay-300 ${
-                    isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-                  }`}
-                >
+                <div className="grid md:grid-cols-2 gap-16 items-center opacity-100 translate-y-0 transition-all duration-1000 delay-300">
                   <div className="space-y-6">
                     <h2 className="text-section-title text-foreground">
                       Long legs don't care.
