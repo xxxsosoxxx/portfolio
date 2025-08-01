@@ -214,9 +214,7 @@ export default function About() {
           </div>
         </section>
         </PageTransition>
-        
 
-        <Footer />
       </div>
       
   );

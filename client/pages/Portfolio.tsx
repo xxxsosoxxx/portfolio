@@ -42,9 +42,6 @@ export default function Portfolio() {
         </section>
         </PageTransition>
 
-        {/* Footer */}
-        <Footer />
       </div>
   );
 }
-
