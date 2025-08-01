@@ -4,7 +4,7 @@ import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 import { PageTransition } from "@/components/ui/PageTransition";
 import { useNavigationDirection } from "@/hooks/useNavigationDirection";
-import { AnimatedCTA } from "@/components/AnimatedCTA";
+import { AnimatedCTA } from "@/components/ui/animatedCTA";
 
 export default function Index() {
   const direction = useNavigationDirection();

@@ -9,7 +9,7 @@ type HeroSectionProps = {
   className?: string;
 };
 
-export const HeroSection = ({
+export const HeroBlock = ({
   title,
   direction = "forward",
   className = "",
