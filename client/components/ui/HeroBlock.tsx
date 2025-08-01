@@ -26,7 +26,7 @@ export const HeroBlock = () => {
         initial={{ opacity: 0, x: isForward ? 100 : -100 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.6, ease: [0.25, 0.8, 0.25, 1] }}
-        className="text-hero font-orbitron font-semibold uppercase tracking-wide text-foreground"
+        className="text-hero--edito font-orbitron font-semibold uppercase tracking-wide text-foreground"
       >
         {preset?.title}
       </motion.h1>
