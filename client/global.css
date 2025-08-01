@@ -199,7 +199,6 @@ html.dark .nav::after {
     @apply font-orbitron font-semibold uppercase tracking-wide;
     font-size: clamp(6rem, 12vw, 16rem);
     line-height: 0.85;
-    letter-spacing: -0.05em;
     font-weight: 800;
     color: hsl(var(--foreground));
     transition: all 0.3s ease-out;

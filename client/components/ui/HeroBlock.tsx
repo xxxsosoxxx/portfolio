@@ -18,7 +18,7 @@ export const HeroBlock = () => {
   const isForward = direction === "forward";
 
   return (
-    <section className="relative flex flex-col items-center justify-center px-6 md:px-12 lg:px-24 text-center py-24 md:py-32 overflow-hidden">
+    <section className="relative flex flex-col items-center justify-center px-6 md:px-12 lg:px-24 text-center pt-16 pb-12 md:pt-24 md:pb-16 overflow-hidden">
 
       
       {/* Titre principal */}
@@ -26,7 +26,7 @@ export const HeroBlock = () => {
         initial={{ opacity: 0, x: isForward ? 100 : -100 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.6, ease: [0.25, 0.8, 0.25, 1] }}
-        className="text-hero--edito md:text-hero--edito max-w-[90vw] font-orbitron font-semibold uppercase tracking-wide text-foreground"
+        className="text-hero--edito md:text-hero--edito--mobile max-w-[90vw] font-orbitron font-semibold uppercase tracking-wide text-foreground"
       >
         {preset?.title}
       </motion.h1>
