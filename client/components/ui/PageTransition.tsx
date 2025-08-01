@@ -1,25 +1,23 @@
 import { motion } from "framer-motion";
 import { useNavigationDirection } from "@/hooks/useNavigationDirection";
 import { easeOut, easeIn } from "framer-motion";
-import { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 
 export function PageTransition({ children }: { children: React.ReactNode }) {
   const direction = useNavigationDirection();
-  const [shouldAnimate, setShouldAnimate] = useState(false);
+  const location = useLocation();
 
-  useEffect(() => {
-    setShouldAnimate(true);
-  }, []);
+  const isHome = location.pathname === "/";
 
   const variants = {
     initial: {
-      opacity: 0,
-      x: direction === "forward" ? 100 : -100,
+      opacity: isHome ? 1 : 0,
+      x: isHome ? 0 : direction === "forward" ? 100 : -100,
     },
     animate: {
       opacity: 1,
       x: 0,
-      transition: { duration: 0.6, ease: easeOut },
+      transition: isHome ? undefined : { duration: 0.6, ease: easeOut },
     },
     exit: {
       opacity: 0,
@@ -30,7 +28,7 @@ export function PageTransition({ children }: { children: React.ReactNode }) {
 
   return (
     <motion.div
-      initial={shouldAnimate ? "initial" : false}
+      initial="initial"
       animate="animate"
       exit="exit"
       variants={variants}
@@ -40,6 +38,7 @@ export function PageTransition({ children }: { children: React.ReactNode }) {
     </motion.div>
   );
 }
+
 
 
 

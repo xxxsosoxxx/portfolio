@@ -3,9 +3,16 @@ import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 import { useNavigationDirection } from "@/hooks/useNavigationDirection";
 import { AnimatedCTA } from "@/components/ui/animatedCTA";
+import { useEffect, useState } from "react";
 
 export default function Index() {
   const direction = useNavigationDirection();
+  const [isLoaded, setIsLoaded] = useState(false);
+
+useEffect(() => {
+  setIsLoaded(true);
+}, []);
+
 
   return (
       <div className="min-h-screen relative overflow-hidden animate-fade-in-up">
