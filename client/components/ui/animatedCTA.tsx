@@ -30,12 +30,20 @@ export const AnimatedCTA = ({ href, label, direction = "right" }: AnimatedCTAPro
         onClick={handleClick}
         variant="ghost"
         size="lg"
-        withArrow
         className="tracking-wider uppercase text-[14px] leading-[20px] font-medium hover:text-muted-foreground transition-colors duration-300"
         style={{ fontFamily: "Orbitron, sans-serif" }}
-      >
+        >
         {label}
-      </Button>
+        {isClicked && (
+            <motion.div
+            layoutId="cta-line"
+            className="ml-2 h-[2px] w-[24px] bg-muted"
+            initial={{ scaleX: 1 }}
+            animate={isClicked ? { scaleX: 80 } : {}}
+            transition={{ duration: 0.4, ease: "easeOut" }}
+            />
+        )}
+        </Button>
     </motion.div>
   );
 };

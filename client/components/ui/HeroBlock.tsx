@@ -19,14 +19,7 @@ export const HeroBlock = () => {
 
   return (
     <section className="relative min-h-[60vh] flex flex-col items-center justify-center px-6 text-center pt-32 pb-16 overflow-hidden">
-      {/* Ligne décorative animée */}
-      <motion.div
-        initial={{ scaleX: 0 }}
-        animate={{ scaleX: 1 }}
-        transition={{ duration: 0.6, ease: [0.25, 0.8, 0.25, 1] }}
-        className={`origin-${isForward ? "left" : "right"} mb-6 h-[2px] w-[80%] bg-muted`}
-      />
-
+      
       {/* Titre principal */}
       <motion.h1
         initial={{ opacity: 0, x: isForward ? 100 : -100 }}
@@ -37,23 +30,14 @@ export const HeroBlock = () => {
         {preset?.title}
       </motion.h1>
 
-      {/* Liens CTA en ligne */}
+      {/* Ligne décorative animée */}
       <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.6, duration: 0.6 }}
-        className="mt-6 flex flex-wrap justify-center gap-6 text-base font-medium uppercase tracking-wide"
-      >
-        <Link to="/about" className="hover:underline underline-offset-4">
-          About
-        </Link>
-        <Link to="/portfolio" className="hover:underline underline-offset-4">
-          Portfolio
-        </Link>
-        <Link to="/contact" className="hover:underline underline-offset-4">
-          Contact
-        </Link>
-      </motion.div>
+        layoutId="cta-line"
+        className={`origin-${isForward ? "left" : "right"} mt-6 h-[2px] w-[80%] bg-muted`}
+        initial={{ scaleX: 0 }}
+        animate={{ scaleX: 1 }}
+        transition={{ duration: 0.6, ease: [0.25, 0.8, 0.25, 1] }}
+        />
     </section>
   );
 };
