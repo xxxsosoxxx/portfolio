@@ -9,6 +9,9 @@ export default defineConfig(({ mode }) => ({
     host: "::",
     port: 8080,
   },
+  preview: {
+    allowedHosts: ["devserver-preview--portfoliosouheilasaid.netlify.app"],
+  },
   build: {
     outDir: "dist/spa",
   },
