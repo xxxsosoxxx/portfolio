@@ -2,6 +2,11 @@ import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
+import { PageTransition } from "@/components/ui/PageTransition";
+import { useNavigationDirection } from "@/hooks/useNavigationDirection";
+import { AnimatedCTA } from "@/components/AnimatedCTA";
+
+const direction = useNavigationDirection();
 
 export default function Index() {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -11,7 +16,8 @@ export default function Index() {
   }, []);
 
   return (
-    <div className="min-h-screen relative overflow-hidden">
+    <PageTransition>
+      <div className="min-h-screen relative overflow-hidden">
       <Helmet>
         <title>Souheila Said – Model & Creative</title>
         <meta
@@ -123,18 +129,7 @@ export default function Index() {
                   <p className="text-body text-muted-foreground mb-6">
                     Editorial shoots and polaroïds
                   </p>
-                  <a
-                    href="/portfolio"
-                    className="tracking-wider uppercase hover:text-muted-foreground transition-colors duration-300"
-                    style={{
-                      fontFamily: "Orbitron, sans-serif",
-                      fontSize: "14px",
-                      lineHeight: "20px",
-                      fontWeight: 500,
-                    }}
-                  >
-                    Explore Work →
-                  </a>
+                  <AnimatedCTA href="/portfolio" label="Explore Work" direction="right" />
                 </div>
 
                 {/* About */}
@@ -145,18 +140,7 @@ export default function Index() {
                   <p className="text-body text-muted-foreground mb-6">
                     Background and measurements
                   </p>
-                  <a
-                    href="/about"
-                    className="tracking-wider uppercase hover:text-muted-foreground transition-colors duration-300"
-                    style={{
-                      fontFamily: "Orbitron, sans-serif",
-                      fontSize: "14px",
-                      lineHeight: "20px",
-                      fontWeight: 500,
-                    }}
-                  >
-                    Learn More →
-                  </a>
+                  <AnimatedCTA href="/about" label="Learn More" direction="right" />
                 </div>
 
                 {/* Contact */}
@@ -167,18 +151,8 @@ export default function Index() {
                   <p className="text-body text-muted-foreground mb-6">
                     Ready to collaborate?
                   </p>
-                  <a
-                    href="/contact"
-                    className="tracking-wider uppercase hover:text-muted-foreground transition-colors duration-300"
-                    style={{
-                      fontFamily: "Orbitron, sans-serif",
-                      fontSize: "14px",
-                      lineHeight: "20px",
-                      fontWeight: 500,
-                    }}
-                  >
-                    Get In Touch →
-                  </a>
+                  <AnimatedCTA href="/contact" label="Get In Touch" direction="right" />
+                </div>
                 </div>
               </div>
             </div>
@@ -188,6 +162,7 @@ export default function Index() {
         <Footer />
       </main>
     </div>
+    </PageTransition>
   );
 }
 

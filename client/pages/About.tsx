@@ -2,6 +2,10 @@ import React, { useState, useRef, useEffect } from "react";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 import { Helmet } from "react-helmet";
+import { PageTransition } from "@/components/ui/PageTransition";
+import { useNavigationDirection } from "@/hooks/useNavigationDirection";
+import { HeroBlock } from "@/components/ui/HeroBlock";
+
 
 <Helmet>
   <title>About – Souheila Said</title>
@@ -19,6 +23,7 @@ import { Helmet } from "react-helmet";
 export default function About() {
   const aboutContentRef = useRef<HTMLDivElement>(null);
   const [aboutHeight, setAboutHeight] = useState<number>(0);
+  const direction = useNavigationDirection();
 
   useEffect(() => {
     function updateHeight() {
@@ -32,7 +37,8 @@ export default function About() {
   }, []);
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <PageTransition>
+      <div className="min-h-screen flex flex-col">
       <Navigation />
 
       <section className="flex-1 bg-background pt-32 pb-16">
@@ -63,7 +69,7 @@ export default function About() {
                 style={{ fontSize: "16px", lineHeight: "24px" }}
               >
                 {/* Title at the top */}
-                <h2 className="text-4xl font-semibold mb-6">About</h2>
+                <HeroBlock title="About" direction={direction} />
 
                 {/* Text aligned bottom */}
                 <div className="text-subhero text-muted-foreground mt-auto">
@@ -210,5 +216,6 @@ export default function About() {
 
       <Footer />
     </div>
+    </PageTransition>
   );
 }

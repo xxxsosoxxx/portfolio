@@ -9,13 +9,12 @@ import Contact from "./pages/Contact";
 import Accessibility from "./pages/Accessibility";
 import TermsOfUse from "./pages/TermsOfUse";
 import NotFound from "./pages/NotFound";
-import DarkModeToggle from "./components/ui/darkmodetoggle";
+
 
 function App() {
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <header className="p-4">
-      </header>
+      <header className="p-4"></header>
 
       <BrowserRouter>
         <div className="smooth-scroll">
@@ -33,5 +32,3 @@ function App() {
     </div>
   );
 }
-
-createRoot(document.getElementById("root")!).render(<App />);

@@ -4,6 +4,8 @@ import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 import { Helmet } from "react-helmet";
 import { HeroBlock } from "@/components/ui/HeroBlock";
+import { PageTransition } from "@/components/ui/PageTransition";
+import { useNavigationDirection } from "@/hooks/useNavigationDirection";
 
 
 <Helmet>
@@ -20,12 +22,8 @@ import { HeroBlock } from "@/components/ui/HeroBlock";
 </Helmet>
 
 export default function Contact() {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    message: "",
-  });
-
+  const direction = useNavigationDirection();
+  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
   const [status, setStatus] = useState<"idle" | "success" | "error" | "loading">("idle");
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -61,22 +59,28 @@ export default function Contact() {
   };
 
   return (
-    <div className="min-h-screen">
-      <Navigation />
+    <PageTransition>
+      <div className="min-h-screen">
+        <Helmet>
+          <title>Contact – Souheila Said</title>
+          <meta name="description" content="Get in touch with Souheila Said..." />
+          <meta name="keywords" content="Contact Souheila Said, fashion collaboration..." />
+          <meta name="author" content="Souheila Said" />
+        </Helmet>
 
-      {/* Hero Section */}
-      <section className="pt-32 pb-16 bg-background">
-        <div className="section-padding">
-          <div className="container-narrow text-center">
-            <HeroBlock className="mb-8">
-            CONTACT
-            </HeroBlock>
-            <p className="text-subhero text-muted-foreground max-w-2xl mx-auto animate-fade-in-up">
-              Ready to collaborate? Let's create something beautiful together.
-            </p>
+        <Navigation />
+
+        {/* Hero Section */}
+        <section className="pt-32 pb-16 bg-background">
+          <div className="section-padding">
+            <div className="container-narrow text-center">
+              <HeroBlock title="Contact" direction={direction} />
+              <p className="text-subhero text-muted-foreground max-w-2xl mx-auto animate-fade-in-up">
+                Ready to collaborate? Let's create something beautiful together.
+              </p>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
       {/* Contact Form & Info */}
       <section className="pb-24">
@@ -216,7 +220,8 @@ export default function Contact() {
         </div>
       </section>
 
-      <Footer />
-    </div>
+     <Footer />
+      </div>
+    </PageTransition>
   );
 }
