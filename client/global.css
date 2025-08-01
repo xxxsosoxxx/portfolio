@@ -117,7 +117,7 @@
   .nav {
     @apply fixed top-0 left-0 right-0 z-50 backdrop-blur-lg transition-colors duration-500 ease-in-out;
     background-color: var(--nav-bg-unscrolled);
-    box-shadow: 0 10px 15px -10px rgba(0, 0, 0, 0.1);
+    box-shadow: none
     position: relative;
     border: none;
   }
