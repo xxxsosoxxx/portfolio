@@ -196,8 +196,8 @@ html.dark .nav::after {
   }
   
   .text-hero--edito {
-    @apply font-heading font-medium;
-    font-size: clamp(4rem, 12vw, 12rem);
+    @apply font-orbitron font-semibold uppercase tracking-wide;
+    font-size: clamp(6rem, 12vw, 16rem);
     line-height: 0.85;
     letter-spacing: -0.05em;
     font-weight: 800;
@@ -205,7 +205,7 @@ html.dark .nav::after {
     transition: all 0.3s ease-out;
  }
    .text-hero--edito--mobile {
-    @apply font-heading font-medium;
+    @apply font-orbitron font-semibold uppercase tracking-wide;
     font-size: clamp(2.5rem, 8vw, 4rem);
     line-height: 1.1;
     max-width: 90vw;
