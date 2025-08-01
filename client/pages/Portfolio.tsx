@@ -22,11 +22,7 @@ export default function Portfolio() {
         </Helmet>
 
         <Navigation />
-
-        {/* Hero Section */}
-        <section className="pt-32 pb-16 bg-background">
-          <HeroBlock title="Portfolio" direction={direction} />
-        </section>
+        <HeroBlock />
 
         {/* Photo Gallery */}
         <section className="pb-0 bg-background">

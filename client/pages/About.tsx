@@ -40,7 +40,7 @@ export default function About() {
     <PageTransition>
       <div className="min-h-screen flex flex-col">
       <Navigation />
-
+      <HeroBlock />
       <section className="flex-1 bg-background pt-32 pb-16">
         <div className="section-padding">
           <div className="container-narrow">
@@ -68,9 +68,7 @@ export default function About() {
                 className="order-2 md:order-1 max-w-xl flex flex-col justify-between flex-1"
                 style={{ fontSize: "16px", lineHeight: "24px" }}
               >
-                {/* Title at the top */}
-                <HeroBlock title="About" direction={direction} />
-
+            
                 {/* Text aligned bottom */}
                 <div className="text-subhero text-muted-foreground mt-auto">
                   <br />

@@ -69,18 +69,7 @@ export default function Contact() {
         </Helmet>
 
         <Navigation />
-
-        {/* Hero Section */}
-        <section className="pt-32 pb-16 bg-background">
-          <div className="section-padding">
-            <div className="container-narrow text-center">
-              <HeroBlock title="Contact" direction={direction} />
-              <p className="text-subhero text-muted-foreground max-w-2xl mx-auto animate-fade-in-up">
-                Ready to collaborate? Let's create something beautiful together.
-              </p>
-            </div>
-          </div>
-        </section>
+        <HeroBlock />
 
       {/* Contact Form & Info */}
       <section className="pb-24">
