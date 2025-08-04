@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { AnimatePresence, motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 export function Navigation() {
@@ -37,13 +38,19 @@ export function Navigation() {
         role="navigation"
         aria-label="Primary Navigation"
         className={cn(
-          "nav",
-          isScrolled ? "scrolled" : "unscrolled"
+          "fixed top-0 left-0 right-0 z-50 bg-transparent transition-all duration-300",
+          isScrolled
+            ? "bg-background/80 backdrop-blur-lg"
+            : "bg-background/60 backdrop-blur-sm"
         )}
       >
         <div className="section-padding py-6">
           <div className="flex items-center justify-between">
-            <Link to="/" className="logo">
+            <Link
+              to="/"
+              className="text-2xl font-light text-foreground transition-colors duration-300"
+              style={{ font: "25px/28px Orbitron, sans-serif" }}
+            >
               SOUHEILA SAID
             </Link>
 
@@ -52,8 +59,16 @@ export function Navigation() {
                 <Link
                   key={item.href}
                   to={item.href}
-                  aria-current={location.pathname === item.href ? "page" : undefined}
-                  className="nav-link"
+                  aria-current={
+                    location.pathname === item.href ? "page" : undefined
+                  }
+                  className={cn(
+                    "relative text-base font-light transition-opacity duration-200 hover:opacity-70",
+                    location.pathname === item.href
+                      ? "opacity-60"
+                      : "opacity-100"
+                  )}
+                  style={{ fontFamily: "Orbitron, sans-serif" }}
                 >
                   {item.label}
                 </Link>
@@ -67,34 +82,64 @@ export function Navigation() {
               aria-expanded={isMenuOpen ? "true" : "false"}
             >
               <span className="sr-only">Toggle navigation menu</span>
-              <span className={cn("block w-6 h-px bg-current transition-all", isMenuOpen && "rotate-45 translate-y-2")} />
-              <span className={cn("block w-6 h-px bg-current transition-opacity", isMenuOpen && "opacity-0")} />
-              <span className={cn("block w-6 h-px bg-current transition-all", isMenuOpen && "-rotate-45 -translate-y-2")} />
+              <span
+                className={cn(
+                  "block w-6 h-px bg-current transition-all",
+                  isMenuOpen && "rotate-45 translate-y-2"
+                )}
+              />
+              <span
+                className={cn(
+                  "block w-6 h-px bg-current transition-opacity",
+                  isMenuOpen && "opacity-0"
+                )}
+              />
+              <span
+                className={cn(
+                  "block w-6 h-px bg-current transition-all",
+                  isMenuOpen && "-rotate-45 -translate-y-2"
+                )}
+              />
             </button>
           </div>
         </div>
       </nav>
 
-      <div
-        className={cn(
-          "fixed inset-0 z-40 bg-background/60 backdrop-blur-lg transform transition-transform duration-300 md:hidden",
-          isMenuOpen ? "translate-x-0" : "translate-x-full"
+      <AnimatePresence>
+        {isMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, x: 100 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: 100 }}
+            transition={{ duration: 0.3 }}
+            className="fixed inset-0 z-40 bg-background/60 backdrop-blur-lg md:hidden"
+          >
+            <div className="flex flex-col items-center justify-center h-screen space-y-8 px-6">
+              {navItems.map((item, i) => (
+                <Link
+                  key={item.href}
+                  to={item.href}
+                  onClick={() => setIsMenuOpen(false)}
+                  ref={i === 0 ? firstLinkRef : null}
+                  aria-current={
+                    location.pathname === item.href ? "page" : undefined
+                  }
+                  className={cn(
+                    "text-2xl font-light transition-opacity duration-200",
+                    location.pathname === item.href
+                      ? "opacity-60"
+                      : "opacity-100 hover:opacity-70"
+                  )}
+                  style={{ fontFamily: "Orbitron, sans-serif" }}
+                >
+                  {item.label}
+                </Link>
+              ))}
+            </div>
+          </motion.div>
         )}
-      >
-        <div className="flex flex-col items-center justify-center h-screen space-y-8 px-6">
-          {navItems.map((item, i) => (
-            <Link
-              key={item.href}
-              to={item.href}
-              ref={i === 0 ? firstLinkRef : null}
-              aria-current={location.pathname === item.href ? "page" : undefined}
-              className="nav-link text-2xl"
-            >
-              {item.label}
-            </Link>
-          ))}
-        </div>
-      </div>
+      </AnimatePresence>
     </>
   );
 }
+
