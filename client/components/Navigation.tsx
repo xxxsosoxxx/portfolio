@@ -37,20 +37,11 @@ export function Navigation() {
       <nav
         role="navigation"
         aria-label="Primary Navigation"
-        className={cn(
-          "fixed top-0 left-0 right-0 z-50 bg-transparent transition-all duration-300",
-          isScrolled
-            ? "bg-background/80 backdrop-blur-lg"
-            : "bg-background/60 backdrop-blur-sm"
-        )}
+        className={cn("nav", isScrolled ? "scrolled" : "unscrolled")}
       >
         <div className="section-padding py-6">
           <div className="flex items-center justify-between">
-            <Link
-              to="/"
-              className="text-2xl font-light text-foreground transition-colors duration-300"
-              style={{ font: "25px/28px Orbitron, sans-serif" }}
-            >
+            <Link to="/" className="logo">
               SOUHEILA SAID
             </Link>
 
@@ -59,16 +50,8 @@ export function Navigation() {
                 <Link
                   key={item.href}
                   to={item.href}
-                  aria-current={
-                    location.pathname === item.href ? "page" : undefined
-                  }
-                  className={cn(
-                    "relative text-base font-light transition-opacity duration-200 hover:opacity-70",
-                    location.pathname === item.href
-                      ? "opacity-60"
-                      : "opacity-100"
-                  )}
-                  style={{ fontFamily: "Orbitron, sans-serif" }}
+                  aria-current={location.pathname === item.href ? "page" : undefined}
+                  className="nav-link"
                 >
                   {item.label}
                 </Link>
@@ -82,24 +65,9 @@ export function Navigation() {
               aria-expanded={isMenuOpen ? "true" : "false"}
             >
               <span className="sr-only">Toggle navigation menu</span>
-              <span
-                className={cn(
-                  "block w-6 h-px bg-current transition-all",
-                  isMenuOpen && "rotate-45 translate-y-2"
-                )}
-              />
-              <span
-                className={cn(
-                  "block w-6 h-px bg-current transition-opacity",
-                  isMenuOpen && "opacity-0"
-                )}
-              />
-              <span
-                className={cn(
-                  "block w-6 h-px bg-current transition-all",
-                  isMenuOpen && "-rotate-45 -translate-y-2"
-                )}
-              />
+              <span className={cn("block w-6 h-px bg-current transition-all", isMenuOpen && "rotate-45 translate-y-2")} />
+              <span className={cn("block w-6 h-px bg-current transition-opacity", isMenuOpen && "opacity-0")} />
+              <span className={cn("block w-6 h-px bg-current transition-all", isMenuOpen && "-rotate-45 -translate-y-2")} />
             </button>
           </div>
         </div>
@@ -121,16 +89,8 @@ export function Navigation() {
                   to={item.href}
                   onClick={() => setIsMenuOpen(false)}
                   ref={i === 0 ? firstLinkRef : null}
-                  aria-current={
-                    location.pathname === item.href ? "page" : undefined
-                  }
-                  className={cn(
-                    "text-2xl font-light transition-opacity duration-200",
-                    location.pathname === item.href
-                      ? "opacity-60"
-                      : "opacity-100 hover:opacity-70"
-                  )}
-                  style={{ fontFamily: "Orbitron, sans-serif" }}
+                  aria-current={location.pathname === item.href ? "page" : undefined}
+                  className="nav-link text-2xl font-light"
                 >
                   {item.label}
                 </Link>
