@@ -283,3 +283,38 @@
     transition: all 0.3s ease-in;
   }
 }
+
+@media (max-width: 768px) {
+  .about-mobile-wrapper {
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  .about-mobile-image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+    filter: brightness(0.6);
+  }
+
+  .about-mobile-text {
+    position: relative;
+    z-index: 1;
+    height: 100%;
+    overflow-y: auto;
+    padding: 2rem 1.5rem;
+    color: white;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+    font-size: clamp(1rem, 4vw, 1.25rem);
+    line-height: 1.8;
+    backdrop-filter: blur(2px);
+  }
+
+  .about-mobile-text::-webkit-scrollbar {
+    display: none;
+  }
+}
