@@ -1,6 +1,4 @@
 import { Helmet } from "react-helmet";
-import { Navigation } from "@/components/Navigation";
-import { Footer } from "@/components/Footer";
 import { useNavigationDirection } from "@/hooks/useNavigationDirection";
 import { AnimatedCTA } from "@/components/ui/animatedCTA";
 
@@ -24,8 +22,6 @@ export default function Index() {
         </Helmet>
 
         <main className="relative overflow-clip">
-          {/* Navigation */}
-          <Navigation />
 
           {/* Hero Section */}
           <section className="relative h-screen flex items-center justify-center text-white transition-opacity duration-700">
@@ -128,8 +124,6 @@ export default function Index() {
             </div>
           </section>
 
-          {/* Footer */}
-          <Footer />
         </main>
       </div>
   );

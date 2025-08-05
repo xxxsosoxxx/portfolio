@@ -1,10 +1,6 @@
-import { Navigation } from "@/components/Navigation";
-import { Footer } from "@/components/Footer";
-
 export default function NotFound() {
   return (
     <div className="min-h-screen">
-      <Navigation />
 
       <section className="pt-32 pb-24 bg-background">
         <div className="section-padding">
@@ -26,8 +22,6 @@ export default function NotFound() {
           </div>
         </div>
       </section>
-
-      <Footer />
     </div>
   );
 }

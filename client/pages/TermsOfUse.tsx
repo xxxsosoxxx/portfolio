@@ -1,10 +1,6 @@
-import { Navigation } from "@/components/Navigation";
-import { Footer } from "@/components/Footer";
-
 export default function TermsOfUse() {
   return (
     <div className="min-h-screen">
-      <Navigation />
 
       {/* Hero Section */}
       <section className="pt-32 pb-16 bg-background">
@@ -73,8 +69,6 @@ export default function TermsOfUse() {
           </div>
         </div>
       </section>
-
-      <Footer />
     </div>
   );
 }

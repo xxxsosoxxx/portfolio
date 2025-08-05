@@ -1,7 +1,5 @@
 import { useState } from "react";
 import emailjs from "@emailjs/browser";
-import { Navigation } from "@/components/Navigation";
-import { Footer } from "@/components/Footer";
 import { Helmet } from "react-helmet";
 import { HeroBlock } from "@/components/ui/HeroBlock";
 import { PageTransition } from "@/components/ui/PageTransition";
@@ -59,8 +57,6 @@ export default function Contact() {
         <meta name="author" content="Souheila Said" />
       </Helmet>
 
-      {/* Navbar */}
-      <Navigation />
 
       {/* Page animée */}
       <PageTransition>

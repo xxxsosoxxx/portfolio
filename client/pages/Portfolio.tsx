@@ -19,8 +19,7 @@ export default function Portfolio() {
           <meta name="keywords" content="portfolio, fashion, editorial, creative, Brussels, runway" />
           <meta name="author" content="Souheila Said" />
         </Helmet>
-
-        <Navigation />
+        
         <PageTransition>
         <HeroBlock />
 
