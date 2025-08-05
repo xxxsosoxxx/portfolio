@@ -25,13 +25,23 @@ export default function About() {
           <div className="absolute inset-0 flex items-center justify-center p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
             <div className="text-center text-white text-[clamp(1rem,5vw,1.25rem)] leading-snug photo-title font-body">
               I believe in fashion as form, not distraction.<br />
-              My body is not a product. It is an expression.
+                My body is not a product. It is an expression.
+              It belongs to form, to movement, to substance.
+              I stand with those who design, construct, and reflect.
+                Those who see fabric as structure, and the body as narrative.
+                Not a label. Not a passing style. Not an accessory.
+              I believe in silhouettes that create presence.
+                In visions that endure.
+                In quiet strength that speaks beyond the noise.
+              I move with designers who imagine the future.
+                With creators who build meaning.
+              I am not here to embellish.I am here to contribute.
             </div>
           </div>
         </section>
 
         {/* Mobile: Background & Measurements */}
-        <section className="md:hidden px-6 py-12 space-y-12 font-body text-white text-[clamp(1rem,4vw,1.125rem)] leading-[1.8]">
+        <section className="md:hidden px-6 py-12 space-y-12 font-body text-[clamp(1rem,4vw,1.125rem)] leading-[1.8]">
           <div>
             <h2 className="font-heading text-[clamp(1.75rem,5vw,2rem)] font-semibold mb-4">Background</h2>
             <p>Souheila collaborates on editorial, conceptual, and runway projects, focusing on sculptural silhouettes and quiet power.</p>
@@ -119,7 +129,3 @@ export default function About() {
     </>
   );
 }
-
-
-
-
