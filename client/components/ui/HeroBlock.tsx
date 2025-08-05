@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Link, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { useNavigationDirection } from "@/hooks/useNavigationDirection";
 
 const presets = {
@@ -18,15 +18,14 @@ export const HeroBlock = () => {
   const isForward = direction === "forward";
 
   return (
-    <section className="relative flex flex-col items-center justify-center px-6 md:px-12 lg:px-24 text-center pt-16 pb-12 md:pt-24 md:pb-16 overflow-hidden">
-
+    <section className="py-[15vh] px-6 md:px-12 lg:px-24 flex flex-col items-center justify-center text-center overflow-hidden">
       
-      {/* Titre principal */}
+      {/* Titre principal éditorial responsive */}
       <motion.h1
         initial={{ opacity: 0, x: isForward ? 100 : -100 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.6, ease: [0.25, 0.8, 0.25, 1] }}
-        className="text-hero--edito md:text-hero--edito--mobile max-w-[90vw] font-orbitron font-semibold uppercase tracking-wide text-foreground"
+        className="text-[clamp(2rem,8vw,6rem)] max-w-[90vw] mx-auto font-orbitron font-semibold uppercase tracking-wide text-foreground"
       >
         {preset?.title}
       </motion.h1>
@@ -35,13 +34,11 @@ export const HeroBlock = () => {
       <motion.div
         layoutId="cta-line"
         className={`origin-${isForward ? "left" : "right"} mt-6 h-[2px] w-[80%] bg-muted`}
-        initial={{ scaleX: 0 }}
-        animate={{ scaleX: 1 }}
-        transition={{ duration: 0.6, ease: [0.25, 0.8, 0.25, 1] }}
-        />
+      />
     </section>
   );
 };
+
 
 
 
