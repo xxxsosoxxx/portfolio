@@ -16,29 +16,54 @@ export default function About() {
         <HeroBlock />
 
         {/* Mobile immersive version */}
-        <section className="md:hidden relative h-screen overflow-hidden">
+        <section className="md:hidden relative h-[80vh] overflow-hidden group">
           <img
             src="/DSC_0666.jpg"
-            alt="Souheila"
+            alt="Portrait of Souheila Said"
             className="absolute inset-0 w-full h-full object-cover brightness-[0.5] z-0"
           />
-          <div className="relative z-10 h-full overflow-y-auto p-6 text-white text-[clamp(1rem,4vw,1.25rem)] leading-[1.8] text-shadow no-scrollbar">
-            <p>I believe in fashion as form, not distraction.</p>
-            <p>My body is not a product. It is an expression.<br />It belongs to form, to movement, to substance.</p>
-            <p>I stand with those who design, construct, and reflect.<br />Those who see fabric as structure, and the body as narrative.</p>
-            <p>Not a label. Not a passing style. Not an accessory.</p>
-            <p>I believe in silhouettes that create presence.<br />In visions that endure.<br />In quiet strength that speaks beyond the noise.</p>
-            <p>I move with designers who imagine the future.<br />With creators who build meaning.</p>
-            <p>I am not here to embellish.<br />I am here to contribute.</p>
+          <div className="absolute inset-0 flex items-center justify-center p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            <div className="text-center text-white text-[clamp(1rem,5vw,1.25rem)] leading-snug photo-title font-body">
+              I believe in fashion as form, not distraction.<br />
+              My body is not a product. It is an expression.
+            </div>
+          </div>
+        </section>
+
+        {/* Mobile: Background & Measurements */}
+        <section className="md:hidden px-6 py-12 space-y-12 font-body text-white text-[clamp(1rem,4vw,1.125rem)] leading-[1.8]">
+          <div>
+            <h2 className="font-heading text-[clamp(1.75rem,5vw,2rem)] font-semibold mb-4">Background</h2>
+            <p>Souheila collaborates on editorial, conceptual, and runway projects, focusing on sculptural silhouettes and quiet power.</p>
+            <p>Her presence is precise and instinctive, where structure meets sensuality.</p>
+            <p>She gravitates towards creative directions that value strength, elegance, and intention.</p>
+            <p>Based in Brussels, available for opportunities in Paris, Antwerp, and beyond.</p>
+          </div>
+
+          <div>
+            <h3 className="font-heading text-[clamp(1.75rem,5vw,2rem)] font-semibold mb-4">Measurements</h3>
+            <ul className="space-y-2 font-semibold">
+              <li>Height: 177 cm | 5'9.5</li>
+              <li>Chest: 81 cm | 32</li>
+              <li>Waist: 63 cm | 25</li>
+              <li>Hips: 81 cm | 32</li>
+              <li>Shoes: 39 EU</li>
+              <li>Hair: Dark Brown</li>
+              <li>Eyes: Brown</li>
+            </ul>
           </div>
         </section>
 
         {/* Desktop grid version */}
         <section className="hidden md:block bg-background py-16">
-          <div className="container-narrow grid grid-cols-2 grid-rows-2 gap-x-16 gap-y-24 items-start">
-
-            {/* Manifesto */}
-            <div className="space-y-6 text-muted-foreground text-[clamp(1rem,2vw,1.125rem)] leading-[1.8]">
+          <div className="container-narrow grid grid-cols-2 grid-rows-2 gap-x-16 gap-y-24 items-start" style={{
+            display: "grid",
+            gridTemplateAreas: `
+              "manifesto photo"
+              "bio measurements"
+            `
+          }}>
+            <div className="about-manifesto font-body space-y-6 text-muted-foreground text-[clamp(1rem,2vw,1.125rem)] leading-[1.8]" style={{ gridArea: "manifesto" }}>
               <p>I believe in fashion as form, not distraction.</p>
               <p className="about-text-highlight">
                 My body is not a product. It is an expression.<br />
@@ -55,17 +80,15 @@ export default function About() {
               <p>I am not here to embellish.<br />I am here to contribute.</p>
             </div>
 
-            {/* Photo */}
-            <div className="relative">
+            <div className="about-photo relative" style={{ gridArea: "photo" }}>
               <img
                 src="/DSC_0666.jpg"
-                alt="Souheila"
+                alt="Portrait of Souheila Said"
                 className="rounded-lg shadow-lg object-cover w-full max-w-[500px] aspect-[3/4] gallery-item"
               />
             </div>
 
-            {/* Background */}
-            <div className="space-y-4 text-muted-foreground text-[18px] leading-[28px] max-w-xl">
+            <div className="about-bio font-body space-y-4 text-muted-foreground text-[18px] leading-[28px] max-w-xl" style={{ gridArea: "bio" }}>
               <h2 className="font-heading text-[clamp(2rem,4vw,2.25rem)] font-semibold leading-tight mb-4">Background</h2>
               <p>Souheila collaborates on editorial, conceptual, and runway projects, focusing on sculptural silhouettes and quiet power.</p>
               <p>Her presence is precise and instinctive, where structure meets sensuality.</p>
@@ -73,8 +96,7 @@ export default function About() {
               <p>Based in Brussels, available for opportunities in Paris, Antwerp, and beyond.</p>
             </div>
 
-            {/* Measurements */}
-            <div className="space-y-3 text-muted-foreground text-[18px] font-semibold">
+            <div className="about-measurements font-body space-y-3 text-muted-foreground text-[18px] font-semibold" style={{ gridArea: "measurements" }}>
               <h3 className="font-heading text-[clamp(2rem,4vw,2.25rem)] font-semibold leading-tight mb-4">Measurements</h3>
               {[
                 ["Height", "177 cm | 5'9.5"],
@@ -97,5 +119,7 @@ export default function About() {
     </>
   );
 }
+
+
 
 

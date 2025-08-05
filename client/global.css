@@ -107,7 +107,16 @@
     @apply font-heading font-medium;
     letter-spacing: -0.01em;
   }
+
+  .font-heading {
+    font-family: 'Space Grotesk', sans-serif;
+  }
+
+  .font-body {
+    font-family: 'Inter', sans-serif;
+  }
 }
+
 
 /*────────────────────────────────────────────────────────────────────────*/
 /*                            Components Layer                           */
@@ -282,6 +291,18 @@
     transform: scale(0.9);
     transition: all 0.3s ease-in;
   }
+  .about-grid {
+    display: grid;
+    grid-template-areas:
+      "manifesto photo"
+      "bio measurements";
+    gap: 6rem 4rem;
+  }
+
+  .about-manifesto { grid-area: manifesto; }
+  .about-photo { grid-area: photo; }
+  .about-bio { grid-area: bio; }
+  .about-measurements { grid-area: measurements; }
 }
 
 @media (max-width: 768px) {
