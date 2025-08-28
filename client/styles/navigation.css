@@ -1,0 +1,15 @@
+/* Navigation styles */
+.nav {
+  height: var(--nav-height);
+  display: flex;
+  align-items: center;
+}
+
+.nav-padding {
+  padding-top: var(--nav-height);
+}
+
+/* Hero block spacing */
+.hero-section {
+  padding-top: calc(var(--nav-height) + 2rem);
+}

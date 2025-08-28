@@ -23,7 +23,7 @@ export const HeroBlock = () => {
   return (
     <section
       style={{ minHeight: height ? height + 64 : "auto" }}
-      className="relative flex flex-col items-center justify-center px-6 md:px-12 lg:px-24 text-center py-12 overflow-hidden"
+      className="hero-section relative flex flex-col items-center justify-center px-6 md:px-12 lg:px-24 text-center pb-12 overflow-hidden"
     >
       <div ref={ref} className="flex flex-col items-center w-full">
         <motion.h1
