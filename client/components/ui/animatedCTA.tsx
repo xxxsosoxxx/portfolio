@@ -26,10 +26,12 @@ export const AnimatedCTA = ({ href, label, direction = "right" }: AnimatedCTAPro
       <motion.button
         onClick={handleClick}
         disabled={clicked}
-        className="btn-minimal font-orbitron uppercase tracking-wider text-sm relative overflow-hidden"
+        className="btn-minimal font-orbitron uppercase tracking-wider text-sm relative overflow-hidden px-6 py-3"
         initial={{ opacity: 1 }}
         animate={clicked ? { opacity: 0, x: direction === "right" ? 50 : -50 } : {}}
-        transition={{ duration: 0.4, ease: "easeOut" }}
+        transition={{ duration: 0.6, ease: [0.4, 0.0, 0.2, 1] }}
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
         onAnimationComplete={() => {
           if (clicked) navigate(href);
         }}

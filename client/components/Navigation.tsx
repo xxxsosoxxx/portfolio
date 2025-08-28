@@ -37,7 +37,10 @@ export function Navigation() {
       <nav
         role="navigation"
         aria-label="Primary Navigation"
-        className={cn("nav", isScrolled ? "scrolled" : "unscrolled")}
+        className={cn(
+          "nav fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-sm transition-all duration-300",
+          isScrolled ? "shadow-sm" : ""
+        )}
       >
         <div className="section-padding py-6">
           <div className="flex items-center justify-between">
@@ -62,7 +65,7 @@ export function Navigation() {
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               className="md:hidden flex flex-col justify-center items-center w-6 h-6 space-y-1"
               aria-label="Toggle menu"
-              aria-expanded={isMenuOpen ? "true" : "false"}
+              aria-expanded={isMenuOpen}
             >
               <span className="sr-only">Toggle navigation menu</span>
               <span className={cn("block w-6 h-px bg-current transition-all", isMenuOpen && "rotate-45 translate-y-2")} />

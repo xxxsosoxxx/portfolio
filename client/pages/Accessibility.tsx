@@ -1,12 +1,12 @@
 export default function Accessibility() {
   return (
-    <div className="min-h-screen">
+    <div className="h-screen overflow-y-auto">
 
       {/* Hero Section */}
-      <section className="pt-32 pb-16 bg-background">
+      <section className="pt-24 pb-12 bg-background">
         <div className="section-padding">
           <div className="container-narrow">
-            <h1 className="text-hero mb-8 animate-fade-in-up">
+            <h1 className="text-4xl md:text-5xl font-bold mb-6 animate-fade-in-up">
               Accessibility Statement
             </h1>
           </div>

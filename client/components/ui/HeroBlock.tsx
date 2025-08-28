@@ -23,14 +23,14 @@ export const HeroBlock = () => {
   return (
     <section
       style={{ minHeight: height ? height + 64 : "auto" }}
-      className="relative flex flex-col items-center justify-center px-6 md:px-12 lg:px-24 text-center py-8 overflow-hidden"
+      className="relative flex flex-col items-center justify-center px-6 md:px-12 lg:px-24 text-center py-12 overflow-hidden"
     >
-      <div ref={ref}>
+      <div ref={ref} className="flex flex-col items-center w-full">
         <motion.h1
           initial={{ opacity: 0, x: isForward ? 100 : -100 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6, ease: [0.25, 0.8, 0.25, 1] }}
-          className="text-[clamp(2rem,6vw,4rem)] max-w-[90vw] font-orbitron font-semibold uppercase tracking-wide text-foreground"
+          className="text-[clamp(2.5rem,8vw,5rem)] max-w-[90vw] font-orbitron font-bold uppercase tracking-wider text-foreground"
         >
           {preset?.title}
         </motion.h1>

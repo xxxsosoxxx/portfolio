@@ -8,7 +8,7 @@ export default function DarkModeToggle() {
     <button
       onClick={toggleDarkMode}
       aria-label="Toggle dark mode"
-      className="flex items-center space-x-2 p-2 rounded transition-colors duration-500 hover:bg-muted"
+      className="flex items-center space-x-2 p-2 rounded-lg transition-all duration-300 hover:bg-muted/20 dark:hover:bg-muted/10"
     >
       {/* Icône Soleil */}
       <Sun
