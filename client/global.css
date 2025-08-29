@@ -132,6 +132,14 @@
     position: relative;
     border: none;
   }
+  
+  .nav .section-padding {
+    @apply py-4;
+  }
+  
+  .nav .logo {
+    @apply py-2;
+  }
   .nav.unscrolled {
     @apply transition-colors duration-300 ease-in-out;
     background-color: var(--nav-bg-unscrolled);

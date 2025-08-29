@@ -42,13 +42,13 @@ export function Navigation() {
           isScrolled ? "shadow-sm" : ""
         )}
       >
-        <div className="section-padding py-6">
+        <div className="section-padding">
           <div className="flex items-center justify-between">
             <Link to="/" className="logo">
               SOUHEILA SAID
             </Link>
 
-            <div className="hidden md:flex items-center space-x-16">
+            <div className="hidden md:flex items-center gap-8 md:gap-12">
               {navItems.map((item) => (
                 <Link
                   key={item.href}
@@ -85,7 +85,7 @@ export function Navigation() {
             transition={{ duration: 0.3 }}
             className="fixed inset-0 z-40 bg-background/60 backdrop-blur-lg md:hidden"
           >
-            <div className="flex flex-col items-center justify-center h-screen space-y-8 px-6">
+            <div className="flex flex-col items-center justify-center h-screen space-y-12 px-6">
               {navItems.map((item, i) => (
                 <Link
                   key={item.href}
