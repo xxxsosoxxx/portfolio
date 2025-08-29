@@ -5,8 +5,44 @@
   align-items: center;
 }
 
-.nav-padding {
-  padding-top: var(--nav-height);
+.nav .section-padding {
+  width: 100%;
+  padding: 0 1.5rem;
+}
+
+.nav .container {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  height: 100%;
+}
+
+.nav .logo {
+  font-size: 1.25rem;
+  line-height: 1;
+  padding: 0.5rem 0;
+  display: inline-block;
+}
+
+@media (min-width: 768px) {
+  .nav .logo {
+    font-size: 1.5rem;
+  }
+  
+  .nav .section-padding {
+    padding: 0 2rem;
+  }
+}
+
+.nav-link {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  transition: all 0.2s ease-in-out;
+}
+
+/* Mobile menu button positioning */
+.nav .mobile-menu-button {
+  margin-left: 2rem;
 }
 
 /* Hero block spacing */

@@ -127,18 +127,30 @@
 @layer components {
   /* Nav avec effet scroll & glass */
   .nav {
-    @apply fixed top-0 left-0 right-0 z-50 backdrop-blur-lg transition-colors duration-500 ease-in-out;
+    @apply fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-in-out;
     background-color: var(--nav-bg-unscrolled);
-    position: relative;
     border: none;
+    min-height: var(--nav-height);
+    display: flex;
+    align-items: center;
+    -webkit-backdrop-filter: blur(16px);
+    backdrop-filter: blur(16px);
   }
   
   .nav .section-padding {
-    @apply py-4;
+    @apply w-full py-4;
+  }
+  
+  .nav .container {
+    @apply max-w-[1400px] mx-auto w-full;
   }
   
   .nav .logo {
-    @apply py-2;
+    @apply py-2 text-xl md:text-2xl;
+  }
+
+  .nav-link {
+    @apply px-4 py-2;
   }
   .nav.unscrolled {
     @apply transition-colors duration-300 ease-in-out;
@@ -153,7 +165,7 @@
   }
 
   .logo {
-    @apply text-2xl font-orbitron transition-transform duration-300 ease-out;
+    @apply text-xl md:text-2xl font-orbitron transition-transform duration-300 ease-out;
     color: var(--nav-text);
   }
 
@@ -163,7 +175,7 @@
 
   .nav-link {
     @apply font-orbitron text-sm font-medium uppercase tracking-wider
-           transition-colors duration-200 ease-in-out;
+           transition-colors duration-200 ease-in-out px-4;
     color: var(--nav-text);
     text-shadow: none;
   }
@@ -257,14 +269,15 @@
 
   .no-scrollbar {
     -ms-overflow-style: none;
-    scrollbar-width: none;
   }
   .no-scrollbar::-webkit-scrollbar {
     display: none;
+    width: 0;
+    height: 0;
   }
 
   .gallery-item {
-  @apply transition-transform transition-shadow duration-300 ease-in-out rounded-lg overflow-hidden;
+  @apply transition-all duration-300 ease-in-out rounded-lg overflow-hidden;
 }
 
   .gallery-item:hover {
@@ -343,6 +356,7 @@
     text-shadow: 0 1px 3px var(--text-shadow-color);
     font-size: clamp(1rem, 4vw, 1.25rem);
     line-height: 1.8;
+    -webkit-backdrop-filter: blur(2px);
     backdrop-filter: blur(2px);
   }
 

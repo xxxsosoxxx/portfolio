@@ -43,35 +43,41 @@ export function Navigation() {
         )}
       >
         <div className="section-padding">
-          <div className="flex items-center justify-between">
-            <Link to="/" className="logo">
-              SOUHEILA SAID
-            </Link>
-
-            <div className="hidden md:flex items-center gap-8 md:gap-12">
-              {navItems.map((item) => (
-                <Link
-                  key={item.href}
-                  to={item.href}
-                  aria-current={location.pathname === item.href ? "page" : undefined}
-                  className="nav-link"
-                >
-                  {item.label}
+          <div className="container mx-auto">
+            <div className="flex items-center justify-between">
+              <div className="flex-1">
+                <Link to="/" className="logo inline-block">
+                  SOUHEILA SAID
                 </Link>
-              ))}
-            </div>
+              </div>
 
-            <button
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="md:hidden flex flex-col justify-center items-center w-6 h-6 space-y-1"
-              aria-label="Toggle menu"
-              aria-expanded={isMenuOpen}
-            >
-              <span className="sr-only">Toggle navigation menu</span>
-              <span className={cn("block w-6 h-px bg-current transition-all", isMenuOpen && "rotate-45 translate-y-2")} />
-              <span className={cn("block w-6 h-px bg-current transition-opacity", isMenuOpen && "opacity-0")} />
-              <span className={cn("block w-6 h-px bg-current transition-all", isMenuOpen && "-rotate-45 -translate-y-2")} />
-            </button>
+              <div className="hidden md:flex items-center justify-end flex-1 gap-16">
+                {navItems.map((item) => (
+                  <Link
+                    key={item.href}
+                    to={item.href}
+                    aria-current={location.pathname === item.href ? "page" : undefined}
+                    className="nav-link"
+                  >
+                    {item.label}
+                  </Link>
+                ))}
+              </div>
+
+              <div className="flex md:hidden items-center justify-end pl-8">
+                <button
+                  onClick={() => setIsMenuOpen(!isMenuOpen)}
+                  className="flex flex-col justify-center items-center w-6 h-6 space-y-1"
+                  aria-label="Toggle menu"
+                  aria-expanded={isMenuOpen ? "true" : "false"}
+                >
+                  <span className="sr-only">Toggle navigation menu</span>
+                  <span className={cn("block w-6 h-px bg-current transition-all", isMenuOpen && "rotate-45 translate-y-2")} />
+                  <span className={cn("block w-6 h-px bg-current transition-opacity", isMenuOpen && "opacity-0")} />
+                  <span className={cn("block w-6 h-px bg-current transition-all", isMenuOpen && "-rotate-45 -translate-y-2")} />
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </nav>
