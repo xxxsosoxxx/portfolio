@@ -24,16 +24,8 @@ export default function About() {
           />
         </section>
 
-        {/* Mobile: Background & Measurements */}
-        <section className="md:hidden px-6 py-12 space-y-12 font-body text-[clamp(1rem,4vw,1.125rem)] leading-[1.8]">
-          <div>
-            <h2 className="font-heading text-[clamp(1.75rem,5vw,2rem)] font-semibold mb-4">Background</h2>
-            <p>Souheila collaborates on editorial, conceptual, and runway projects, focusing on sculptural silhouettes and quiet power.</p>
-            <p>Her presence is precise and instinctive, where structure meets sensuality.</p>
-            <p>She gravitates towards creative directions that value strength, elegance, and intention.</p>
-            <p>Based in Brussels, available for opportunities in Paris, Antwerp, and beyond.</p>
-          </div>
-
+        {/* Mobile: Measurements */}
+        <section className="md:hidden px-6 py-12 space-y-8 font-body text-[clamp(1rem,4vw,1.125rem)] leading-[1.8]">
           <div>
             <h3 className="font-heading text-[clamp(1.75rem,5vw,2rem)] font-semibold mb-4">Measurements</h3>
             <ul className="space-y-2 font-semibold">
@@ -50,15 +42,8 @@ export default function About() {
 
         {/* Desktop grid version */}
         <section className="hidden md:block bg-background py-16">
-          <div className="container-narrow grid grid-cols-2 grid-rows-2 gap-x-16 gap-y-24 items-start" style={{
-            display: "grid",
-            gridTemplateAreas: `
-              "manifesto photo"
-              "bio measurements"
-            `
-          }}>
-
-            <div className="about-photo relative" style={{ gridArea: "photo" }}>
+          <div className="container-narrow grid grid-cols-2 gap-x-16 items-start">
+            <div className="about-photo">
               <img
                 src="/DSC_0666.jpg"
                 alt="Portrait of Souheila Said"
@@ -66,15 +51,7 @@ export default function About() {
               />
             </div>
 
-            <div className="about-bio font-body space-y-4 text-muted-foreground text-[18px] leading-[28px] max-w-xl" style={{ gridArea: "bio" }}>
-              <h2 className="font-heading text-[clamp(2rem,4vw,2.25rem)] font-semibold leading-tight mb-4">Background</h2>
-              <p>Souheila collaborates on editorial, conceptual, and runway projects, focusing on sculptural silhouettes and quiet power.</p>
-              <p>Her presence is precise and instinctive, where structure meets sensuality.</p>
-              <p>She gravitates towards creative directions that value strength, elegance, and intention.</p>
-              <p>Based in Brussels, available for opportunities in Paris, Antwerp, and beyond.</p>
-            </div>
-
-            <div className="about-measurements font-body space-y-3 text-muted-foreground text-[18px] font-semibold" style={{ gridArea: "measurements" }}>
+            <div className="about-measurements font-body space-y-3 text-muted-foreground text-[18px] font-semibold">
               <h3 className="font-heading text-[clamp(2rem,4vw,2.25rem)] font-semibold leading-tight mb-4">Measurements</h3>
               {[
                 ["Height", "177 cm | 5'9.5"],
