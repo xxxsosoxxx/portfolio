@@ -1,5 +1,6 @@
 import { Routes, Route, useLocation } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
+import { useNavigationHistory } from "@/hooks/useNavigationHistory";
 import { ScrollToTop } from "@/components/ui/ScrollToTop";
 
 import Index from "@/pages/Index";
@@ -15,6 +16,7 @@ import { PageTransitionWrapper } from "@/components/ui/PageTransitionWrapper";
 
 export function AnimatedRoutes() {
   const location = useLocation();
+  useNavigationHistory(); // Track navigation history
 
   return (
   <>

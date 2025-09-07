@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { useNavigationDirection } from "@/hooks/useNavigationDirection";
-import { easeOut, easeIn } from "framer-motion";
+import { useNavigationHistory } from "@/hooks/useNavigationHistory";
 
 export function PageTransition({ children }: { children: React.ReactNode }) {
   const direction = useNavigationDirection();
@@ -9,16 +9,36 @@ export function PageTransition({ children }: { children: React.ReactNode }) {
     initial: {
       opacity: 0,
       x: direction === "forward" ? 100 : -100,
+      scale: 0.95,
+      transition: {
+        type: "spring" as const,
+        stiffness: 80,
+        damping: 15,
+        mass: 0.8
+      }
     },
     animate: {
       opacity: 1,
       x: 0,
-      transition: { duration: 0.6, ease: easeOut },
+      scale: 1,
+      transition: {
+        type: "spring" as const,
+        stiffness: 80,
+        damping: 15,
+        mass: 0.8,
+        staggerChildren: 0.1
+      }
     },
     exit: {
       opacity: 0,
       x: direction === "forward" ? -100 : 100,
-      transition: { duration: 0.4, ease: easeIn },
+      scale: 0.95,
+      transition: {
+        type: "spring" as const,
+        stiffness: 80,
+        damping: 15,
+        mass: 0.8
+      }
     },
   };
 
