@@ -1,0 +1,28 @@
+/* About page layout */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas: "photo measurements";
+  gap: 4rem;
+  align-items: start;
+}
+
+.about-photo {
+  grid-area: photo;
+  width: 100%;
+}
+
+.about-measurements {
+  grid-area: measurements;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .about-grid {
+    grid-template-columns: 1fr;
+    grid-template-areas: 
+      "photo"
+      "measurements";
+    gap: 2rem;
+  }
+}

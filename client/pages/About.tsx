@@ -1,6 +1,7 @@
 import { Helmet } from "react-helmet";
 import { PageTransition } from "@/components/ui/PageTransition";
 import { HeroBlock } from "@/components/ui/HeroBlock";
+import "@/styles/about.css";
 
 export default function About() {
   return (
@@ -42,7 +43,7 @@ export default function About() {
 
         {/* Desktop grid version */}
         <section className="hidden md:block bg-background py-16">
-          <div className="container-narrow grid grid-cols-2 gap-x-16 items-start">
+          <div className="container-narrow about-grid">
             <div className="about-photo">
               <img
                 src="/DSC_0666.jpg"
