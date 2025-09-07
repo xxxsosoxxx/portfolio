@@ -66,7 +66,7 @@ export default function Index() {
                       Too tired to conform.
                     </p>
                     <div className="pt-4">
-                      <AnimatedCTA href="/portfolio" label="View Portfolio" direction="right" />
+                      <AnimatedCTA href="/portfolio" label="View Portfolio" direction="right" id="main-portfolio" />
                     </div>
                   </div>
                   <div className="relative">
@@ -95,7 +95,7 @@ export default function Index() {
                     <p className="text-body text-muted-foreground mb-6">
                       Editorial shoots and polaroïds
                     </p>
-                    <AnimatedCTA href="/portfolio" label="Explore Work" direction="right" />
+                    <AnimatedCTA href="/portfolio" label="Explore Work" direction="right" id="quick-portfolio" />
                   </div>
 
                   {/* About */}
@@ -106,7 +106,7 @@ export default function Index() {
                     <p className="text-body text-muted-foreground mb-6">
                       Background and measurements
                     </p>
-                    <AnimatedCTA href="/about" label="Learn More" direction="right" />
+                    <AnimatedCTA href="/about" label="Learn More" direction="right" id="quick-about" />
                   </div>
 
                   {/* Contact */}
@@ -117,7 +117,7 @@ export default function Index() {
                     <p className="text-body text-muted-foreground mb-6">
                       Ready to collaborate?
                     </p>
-                    <AnimatedCTA href="/contact" label="Get In Touch" direction="right" />
+                    <AnimatedCTA href="/contact" label="Get In Touch" direction="right" id="quick-contact" />
                   </div>
                 </div>
               </div>

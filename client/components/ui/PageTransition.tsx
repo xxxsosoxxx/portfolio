@@ -8,36 +8,36 @@ export function PageTransition({ children }: { children: React.ReactNode }) {
   const variants = {
     initial: {
       opacity: 0,
-      x: direction === "forward" ? 100 : -100,
-      scale: 0.95,
+      x: direction === "forward" ? "100%" : "-100%",
       transition: {
         type: "spring" as const,
-        stiffness: 80,
-        damping: 15,
-        mass: 0.8
+        stiffness: 100,
+        damping: 20,
+        mass: 0.2,
+        velocity: 2
       }
     },
     animate: {
       opacity: 1,
       x: 0,
-      scale: 1,
       transition: {
         type: "spring" as const,
-        stiffness: 80,
-        damping: 15,
-        mass: 0.8,
-        staggerChildren: 0.1
+        stiffness: 100,
+        damping: 20,
+        mass: 0.2,
+        velocity: 2,
+        staggerChildren: 0.05
       }
     },
     exit: {
       opacity: 0,
-      x: direction === "forward" ? -100 : 100,
-      scale: 0.95,
+      x: direction === "forward" ? "-100%" : "100%",
       transition: {
         type: "spring" as const,
-        stiffness: 80,
-        damping: 15,
-        mass: 0.8
+        stiffness: 100,
+        damping: 20,
+        mass: 0.2,
+        velocity: 2
       }
     },
   };
