@@ -58,7 +58,7 @@ export default function Index() {
                 <div className="grid md:grid-cols-2 gap-16 items-center opacity-100 translate-y-0 transition-all duration-1000 delay-300">
                   <div className="space-y-6">
                     <h2 className="text-section-title text-foreground text-left font-bold tracking-wide">
-                      Long legs don't care.
+                      Shoutout to my mother for her DNA.
                     </h2>
                     <p className="text-body-large text-muted-foreground">
                       Too tall to hide.
